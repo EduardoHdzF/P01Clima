@@ -11,8 +11,6 @@ print("- Ciudad de origen -")
 
 print("- Ciudad de destino -")
 
-#ciudades_archivo = open("ciudades.csv","r+")
-
 lista_coordenadas = []
 
 # Agregar las ciudades a mi lista (sin repeticiones).
@@ -197,5 +195,3 @@ if lista_ciudades[0] == ciudad2:
 '''
 
 ciudades_archivo_csv.close()
-
-#ciudades_archivo.close()
