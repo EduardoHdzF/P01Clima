@@ -58,7 +58,34 @@ for viaje in range(len(lista_ciudades)):
 # Creacion de diccionario.
 #'''
 
-indice_prop = input("Escoge un viaje:")
+# Para manejar las excepciones.
+def manejo_errores(canti_ciudades):
+    
+    verif = False
+
+    while not verif:
+
+        try:
+
+            ciudad_selec = int(input("Escoge un viaje:"))
+
+            if ciudad_selec > 0 and ciudad_selec <= canti_ciudades:
+
+                verif = True   
+
+            else:
+
+                print("ERROR : Solo se puede introducir valores entre 1 - " + str(canti_ciudades) + ".")
+                verif = False             
+
+        except ValueError:
+            print("ERROR : Solo se pueden introducir valores numéricos.")
+
+    return ciudad_selec
+
+indice_prop = manejo_errores(len(lista_ciudades))
+print(indice_prop)
+
 coord_lat_origen = lista_coordenadas[int(indice_prop) - 1][6:]
 coord_long_origen = lista_coordenadas[int(indice_prop) - 1][14:]
 coord_lat_destino = lista_coordenadas[int(indice_prop) - 1][22:]
