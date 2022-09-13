@@ -1,5 +1,4 @@
 import json
-from pprint import pprint
 from urllib.request import urlopen
 
 terminado = 1
