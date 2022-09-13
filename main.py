@@ -57,15 +57,25 @@ for viaje in range(len(lista_ciudades)):
 
 # Creacion de diccionario.
 #'''
+
 indice_prop = input("Escoge un viaje:")
+coord_lat_origen = lista_coordenadas[int(indice_prop) - 1][6:]
+coord_long_origen = lista_coordenadas[int(indice_prop) - 1][14:]
+coord_lat_destino = lista_coordenadas[int(indice_prop) - 1][22:]
+coord_long_destino = lista_coordenadas[int(indice_prop) - 1][30:]
+print(coord_lat_destino + " *** " + coord_long_destino)
 
 iata_codes = {
 
     lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7] : {
-        "Latitud de origen" : lista_coordenadas[int(indice_prop) - 1][8:15],
-        "Longitud de origen" : lista_coordenadas[int(indice_prop) - 1][16:23],
-        "Latitud de destino" : lista_coordenadas[int(indice_prop) - 1][24:31],
-        "Longitud de destino" : lista_coordenadas[int(indice_prop) - 1][32:39],        
+        #"Latitud de origen" : lista_coordenadas[int(indice_prop) - 1][8:15],
+        #"Longitud de origen" : lista_coordenadas[int(indice_prop) - 1][16:23],
+        #"Latitud de destino" : lista_coordenadas[int(indice_prop) - 1][24:31],
+        #"Longitud de destino" : lista_coordenadas[int(indice_prop) - 1][32:39]
+        "Latitud de origen" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen)],
+        "Longitud de origen" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + 1],
+        "Latitud de destino" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
+        "Longitud de destino" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
     }
 
 }
@@ -98,6 +108,8 @@ print(json.dumps(clima_org,indent = 2))
 url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&appid=b2844c1e815b5b3dde610589df05cad2"
 url_des = url_modif_des
 
+print(lat_org + " --- " + long_org)
+print(lat_des + " --- " + long_des)
 with urlopen(url_des) as json_dicc_des:
     json_data_des = json_dicc_des.read()
 
@@ -106,10 +118,10 @@ clima_des = json.loads(json_data_des)
 print(json.dumps(clima_des,indent = 2))
 
 # Clima de la ciudad de origen:
-print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n\n")
+print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
 
 # Clima de la ciudad de destino:
-print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'])
+print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
 
 ## Creacion de un diccionario con una ciudad en particular.
 '''
