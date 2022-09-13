@@ -1,6 +1,3 @@
-#import imp
-#from operator import pos
-from asyncore import read
 import json
 from urllib.request import urlopen
 
