@@ -13,7 +13,9 @@ while terminado == 1:
     ciudades_archivo_csv = open("dataset1.csv","r")
 
     historial = open("lista.txt","r")
-    #actuliza_dicc = open("lista.txt","w+")
+   
+   #actuliza_dicc = open("lista.txt","w+")
+   
     actuliza_dicc = open("lista.txt","a+")
 
     print("- Ciudad de origen -")
