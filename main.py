@@ -49,7 +49,7 @@ while terminado == 1:
 
     # Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
     lista_ciudades = []
-    posicion = 1
+   
 
     for iter in range(len(lista_coordenadas)):
         
@@ -58,18 +58,25 @@ while terminado == 1:
 
     print(lista_ciudades)
 
+    posicion = 1
     # Despliega la lista de viajes disponibles.
     for viaje in range(len(lista_ciudades)):
             
-        for ciudad in range(1):
-
-            print(str(posicion) + ".- " , lista_ciudades[viaje][ciudad] , " -> " , lista_ciudades[viaje][ciudad + 1])
-            posicion += 1
+        #for ciudad in range(1):
+        ciudad = 0
+        print(str(posicion) + ".- " , lista_ciudades[viaje][ciudad] , " -> " , lista_ciudades[viaje][ciudad + 1])
+        posicion += 1
 
     # Creacion de diccionario.
     #'''
 
     # Para manejar las excepciones.
+    '''
+        La función manejor de errores nos ayuda a que cuando se elija un viaje, este exista dentro de la lista de
+        disponibles, y si no, que nos desplegue un mensaje de que no eligió un valor aceptable.
+        @param el número de ciudades que se tienen disponibles.
+
+    '''
     def manejo_errores(canti_ciudades):
         
         verif = False
@@ -99,8 +106,9 @@ while terminado == 1:
 
     coord_lat_origen = lista_coordenadas[int(indice_prop) - 1][6:]
     coord_long_origen = lista_coordenadas[int(indice_prop) - 1][14:]
-    coord_lat_destino = lista_coordenadas[int(indice_prop) - 1][22:]
+    coord_lat_destino = lista_coordenadas[int(indice_prop) - 1][22:]    
     coord_long_destino = lista_coordenadas[int(indice_prop) - 1][30:]
+    print(coord_lat_origen+ " aaaaaaaaaaaaaaaaa "+coord_long_origen)
     print(coord_lat_destino + " *** " + coord_long_destino)
 
     iata_codes = {
@@ -121,7 +129,7 @@ while terminado == 1:
     # Imprimir la ciudad seleccionada
     print(iata_codes.get(lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7]))
     # print(iata_codes.get(input()))
-
+    print("azucqar")
     # Obtener las coordenadas de la ciudad de origen
     long_org = iata_codes [lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7]] ['Longitud de origen']
     lat_org = iata_codes [lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7]] ['Latitud de origen']
