@@ -12,6 +12,10 @@ while terminado == 1:
 
     ciudades_archivo_csv = open("dataset1.csv","r")
 
+    historial = open("lista.txt","r")
+    #actuliza_dicc = open("lista.txt","w+")
+    actuliza_dicc = open("lista.txt","a+")
+
     print("- Ciudad de origen -")
 
     print("- Ciudad de destino -")
@@ -125,6 +129,50 @@ while terminado == 1:
     lat_des = iata_codes [lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7]] ['Latitud de destino']
     #'''
 
+    ciudad_org_cache = False
+
+    ciudad_des_cache = False
+
+    if len(historial.readlines()) == 0:
+        diccionario_guardar = { 
+            "Ciudad" : {
+                
+            }
+        }
+    else:
+        '''
+        diccionario_guardar = {}
+
+        with open("lista.txt") as lista:
+            
+            for linea in lista:
+
+                (llave, valor) = linea.split()
+                diccionario_guardar[int(llave)] = valor
+        '''        
+        diccionario_guardar = {}
+
+        historial.seek(0)
+        diccionario_guardar = eval(historial.readline())        
+        print("Diccionario = " , diccionario_guardar)
+
+        ciudad1 = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][0:3])
+
+        ciudad2 = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
+
+        if ciudad1 != None and ciudad2 != None:
+
+            ciudad_org_cache = True
+            ciudad_des_cache = True
+        elif ciudad1 != None and ciudad2 == None:
+
+            ciudad_org_cache = True
+        elif ciudad1 == None and ciudad2 != None:
+
+            ciudad_des_cache = True
+         
+
+    """
     # Llamada Api de ciudad de origen
     url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&appid=b2844c1e815b5b3dde610589df05cad2"
     url_org = url_modif_org
@@ -148,12 +196,183 @@ while terminado == 1:
     # Imprime el clima de la ciudad de origen (diccionario).
     clima_des = json.loads(json_data_des)
     print(json.dumps(clima_des,indent = 2))
+    """
+    if not ciudad_org_cache and not ciudad_des_cache:
 
-    # Clima de la ciudad de origen:
-    print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
+        # Llamada Api de ciudad de origen
+        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_org = url_modif_org
 
-    # Clima de la ciudad de destino:
-    print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
+        with urlopen(url_org) as json_dicc_org:
+            json_data_org = json_dicc_org.read()
+
+        # Imprime el clima de la ciudad de origen (diccionario).
+        clima_org = json.loads(json_data_org)
+        print(json.dumps(clima_org,indent = 2))
+
+        # Llamada Api de ciudad de destino
+        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_des = url_modif_des
+
+        print(lat_org + " --- " + long_org)
+        print(lat_des + " --- " + long_des)
+        with urlopen(url_des) as json_dicc_des:
+            json_data_des = json_dicc_des.read()
+
+        # Imprime el clima de la ciudad de origen (diccionario).
+        clima_des = json.loads(json_data_des)
+        print(json.dumps(clima_des,indent = 2))
+
+        # Clima de la ciudad de origen:
+        print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
+
+        # Clima de la ciudad de destino:
+        print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
+
+        diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]] = { "Nombre" : clima_org ['name'] , "Clima" : clima_org['weather'][0]['main'] , "Descripcion" : clima_org ['weather'][0]['description'] , "Temperatura" : clima_org ['main']['temp'] , "Temperatura minima" : clima_org ['main']['temp_min'] , "Temperatura maxima" : clima_org ['main']['temp_max'] , "Humedad" : clima_org ['main']['humidity'] , "Velocidad del viento" : clima_org ['wind']['speed'] , "Nubes" : clima_org ['clouds']['all']}
+
+        diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][4:7]] = { "Nombre" : clima_des ['name'] , "Clima" : clima_des['weather'][0]['main'] , "Descripcion" : clima_des ['weather'][0]['description'] , "Temperatura" : clima_des ['main']['temp'] , "Temperatura minima" : clima_des ['main']['temp_min'] , "Temperatura maxima" : clima_des ['main']['temp_max'] , "Humedad" : clima_des ['main']['humidity'] , "Velocidad del viento" : clima_des ['wind']['speed'] , "Nubes" : clima_des ['clouds']['all']}
+
+    elif ciudad_org_cache and not ciudad_des_cache:
+
+        clima_org = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][0:3])
+
+        # Llamada Api de ciudad de destino
+        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_des = url_modif_des
+
+        with urlopen(url_des) as json_dicc_des:
+            json_data_des = json_dicc_des.read()
+
+        # Imprime el clima de la ciudad de origen (diccionario).
+        clima_des = json.loads(json_data_des)
+
+        # Clima de la ciudad de origen:
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'] , "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
+
+        # Clima de la ciudad de destino:
+        print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
+
+        diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][4:7]] = { "Nombre" : clima_des ['name'] , "Clima" : clima_des['weather'][0]['main'] , "Descripcion" : clima_des ['weather'][0]['description'] , "Temperatura" : clima_des ['main']['temp'] , "Temperatura minima" : clima_des ['main']['temp_min'] , "Temperatura maxima" : clima_des ['main']['temp_max'] , "Humedad" : clima_des ['main']['humidity'] , "Velocidad del viento" : clima_des ['wind']['speed'] , "Nubes" : clima_des ['clouds']['all']}
+
+    elif not ciudad_org_cache and ciudad_des_cache:
+
+        clima_des = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
+
+        # Llamada Api de ciudad de origen
+        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_org = url_modif_org
+
+        with urlopen(url_org) as json_dicc_org:
+            json_data_org = json_dicc_org.read()
+
+        # Imprime el clima de la ciudad de origen (diccionario).
+        clima_org = json.loads(json_data_org)
+
+        # Clima de la ciudad de origen:
+        print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
+
+        # Clima de la ciudad de destino:
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_des ['Clima'] + "\n    Descripción : " + clima_des ['Descripcion'] + "\n    Temperatura : " , clima_des ['Temperatura'] , "\n    Temperatura mínima : " , clima_des ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_des ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_des ['Humedad'] , "\n    Velocidad del viento : " , clima_des ['Velocidad del viento'] , "\n    Nubes : " , clima_des ['Nubes'] , "\n    Nombre : " , clima_des ['Nombre'])
+
+        diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]] = { "Nombre" : clima_org ['name'] , "Clima" : clima_org['weather'][0]['main'] , "Descripcion" : clima_org ['weather'][0]['description'] , "Temperatura" : clima_org ['main']['temp'] , "Temperatura minima" : clima_org ['main']['temp_min'] , "Temperatura maxima" : clima_org ['main']['temp_max'] , "Humedad" : clima_org ['main']['humidity'] , "Velocidad del viento" : clima_org ['wind']['speed'] , "Nubes" : clima_org ['clouds']['all']}
+
+    else:
+
+        clima_org = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][0:3])
+
+        clima_des = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
+
+        # Clima de la ciudad de origen:
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'] , "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
+
+        # Clima de la ciudad de destino:
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_des ['Clima'] + "\n    Descripción : " + clima_des ['Descripcion'] + "\n    Temperatura : " , clima_des ['Temperatura'] , "\n    Temperatura mínima : " , clima_des ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_des ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_des ['Humedad'] , "\n    Velocidad del viento : " , clima_des ['Velocidad del viento'] , "\n    Nubes : " , clima_des ['Nubes'] , "\n    Nombre : " , clima_des ['Nombre'])
+    
+    # Agrega los datos visualizados por ultima vez al diccionario que se guardara en un archivo.
+    """
+    if len(historial.readlines()) == 0:
+        diccionario_guardar = { 
+            "Ciudad" : {
+                
+            }
+        }
+    else:
+        '''
+        diccionario_guardar = {}
+
+        with open("lista.txt") as lista:
+            
+            for linea in lista:
+
+                (llave, valor) = linea.split()
+                diccionario_guardar[int(llave)] = valor
+        '''        
+        diccionario_guardar = {}
+
+        historial.seek(0)
+        diccionario_guardar = eval(historial.readline())        
+        print("Diccionario = " , diccionario_guardar)
+    """    
+
+    """
+    "- Clima de la ciudad de destino -\n    
+    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    
+    Descripción : " + clima_des ['weather'][0]['description'] + "\n    
+    Temperatura : " , clima_des ['main']['temp'] , "\n    
+    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    
+    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    
+    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    
+    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    
+    Nubes : " , clima_des ['clouds']['all'] , "\n    
+    Nombre : " , clima_des ['name']
+    """
+    
+    actuliza_dicc.truncate(0)
+    
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Nombre"] = clima_org ['name']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Clima"] = clima_org['weather'][0]['main']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Descripcion"] = clima_org ['weather'][0]['description']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura"] = clima_org ['main']['temp']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura minima"] = clima_org ['main']['temp_min']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura maxima"] = clima_org ['main']['temp_max']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Humedad"] = clima_org ['main']['humidity']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Velocidad del viento"] = clima_org ['wind']['speed']
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Nubes"] = clima_org ['clouds']['all']
+    
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Clima"].append(clima_des['weather'][0]['main'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Descripcion"].append(clima_des ['weather'][0]['description'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura"].append(clima_des ['main']['temp'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura minima"].append(clima_des ['main']['temp_min'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura maxima"].append(clima_des ['main']['temp_max'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Humedad"].append(clima_des ['main']['humidity'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Velocidad del viento"].append(clima_des ['wind']['speed'])
+    #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Nubes"].append(clima_des ['clouds']['all'])
+
+    '''
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Nombre"] = clima_des ['name']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Clima"] = clima_des['weather'][0]['main']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Descripcion"] = clima_des ['weather'][0]['description']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura"] = clima_des ['main']['temp']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura minima"] = clima_des ['main']['temp_min']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Temperatura maxima"] = clima_des ['main']['temp_max']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Humedad"] = clima_des ['main']['humidity']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Velocidad del viento"] = clima_des ['wind']['speed']
+    diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]]["Nubes"] = clima_des ['clouds']['all']
+    '''            
+
+    #historial.write(str(diccionario_guardar))
+    actuliza_dicc.write(str(diccionario_guardar))
+    #actuliza_dicc.write(json.dumps(diccionario_guardar, indent=2))
+    #actuliza_dicc.write(str(diccionario_guardar.keys()))
+    #actuliza_dicc.write(str(diccionario_guardar.values()))
+    #actuliza_dicc.write(str(diccionario_guardar.items()))
+    #for clave, valor in diccionario_guardar.items():
+    #    guardado = (clave , valor)
+
+    #actuliza_dicc.write(str(diccionario_guardar))
+
+    print(len(historial.readlines()))
 
     def finaliza():
         
@@ -266,3 +485,5 @@ while terminado == 1:
     '''
 
     ciudades_archivo_csv.close()
+
+    historial.close()
