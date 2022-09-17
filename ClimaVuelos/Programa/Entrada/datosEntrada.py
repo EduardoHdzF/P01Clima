@@ -1,7 +1,7 @@
 '''Para que pueda ejecutarse correctamente el programa, debemos ejecutarlo desde la
     carpeta P01Clima
 '''
-
+'''
 with open('ClimaVuelos\Programa\Entrada\dataset1.csv', 'r+') as ArchivoEntrada:
 
 #ArchivoEntrada = open('ClimaVuelos\Programa\Entrada\dataset1.csv', 'r+')
@@ -18,3 +18,8 @@ with open('ClimaVuelos\Programa\Entrada\dataset1.csv', 'r+') as ArchivoEntrada:
 
     #print(ArchivoEntrada.readlines())
     print(Lista)
+'''
+ciudades_archivo_csv = open("dataset1.csv","r")
+
+listaCoordenadas = []
+
