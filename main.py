@@ -315,10 +315,10 @@ while terminado == 1:
         clima_des = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
 
         # Clima de la ciudad de origen:
-        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'] + " °C", "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'], " °C", "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
 
         # Clima de la ciudad de destino:
-        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_des ['Clima'] + "\n    Descripción : " + clima_des ['Descripcion'] + "\n    Temperatura : " , clima_des ['Temperatura'] + " °C", "\n    Temperatura mínima : " , clima_des ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_des ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_des ['Humedad'] , "\n    Velocidad del viento : " , clima_des ['Velocidad del viento'] , "\n    Nubes : " , clima_des ['Nubes'] , "\n    Nombre : " , clima_des ['Nombre'])
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_des ['Clima'] + "\n    Descripción : " + clima_des ['Descripcion'] + "\n    Temperatura : " , clima_des ['Temperatura'], " °C", "\n    Temperatura mínima : " , clima_des ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_des ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_des ['Humedad'] , "\n    Velocidad del viento : " , clima_des ['Velocidad del viento'] , "\n    Nubes : " , clima_des ['Nubes'] , "\n    Nombre : " , clima_des ['Nombre'])
     
     # Agrega los datos visualizados por ultima vez al diccionario que se guardara en un archivo.
     """
