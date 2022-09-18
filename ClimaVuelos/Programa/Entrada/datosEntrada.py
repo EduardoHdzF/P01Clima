@@ -35,7 +35,7 @@ for iter in range(len(ciudades_archivo_csv.readlines())):
     elif iter > 1:                    
         ciudades_archivo_csv.seek(0)
 
-        if not listaCoordenadas.count(ciudades_archivo_csv.readlines()[iter]):                                                
+        if listaCoordenadas.count(ciudades_archivo_csv.readlines()[iter])==0: #not listaCoordenadas.count(ciudades_archivo_csv.readlines()[iter]):                                                
             ciudades_archivo_csv.seek(0)
             listaCoordenadas.append(ciudades_archivo_csv.readlines()[iter])                                
             ciudades_archivo_csv.seek(0)

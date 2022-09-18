@@ -100,7 +100,7 @@ class SolicitaApi:
 
         #Cache.archivo.truncate(0)
 
-        if lineasCache.count(clima_org):
+        if lineasCache.count(clima_org) == 0:
             #haces una función para literal pedir eso            
             Cache.archivo.write("seguro")
         else:
