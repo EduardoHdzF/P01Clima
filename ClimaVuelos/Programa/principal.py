@@ -76,6 +76,6 @@ while terminado == 1:
     coordenadas = entrada.listaCoordenadas
     Clase = SolicitaApi(coordenadas ,indice_prop)
     Clase.solicitarAPI()
-    diccionarioCoordenadas = Clase.identificarCoordenadas()
+    diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
     print(diccionarioCoordenadas)
     entrada.ciudades_archivo_csv.close()
