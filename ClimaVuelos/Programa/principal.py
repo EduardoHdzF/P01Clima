@@ -64,7 +64,7 @@ while terminado == 1:
     indice_prop = manejo_errores(len(entrada.lista_ciudades))
     Clase = SolicitaApi(coordenadas ,indice_prop)
     diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
-    Clase.solicitarAPI()
+    #Clase.solicitarAPI()
     Clase.preguntaApi(diccionarioCoordenadas, indice_prop)
 
     # El usuario decide si se finaliza el programa o no.
