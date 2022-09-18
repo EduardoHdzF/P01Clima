@@ -1,7 +1,7 @@
 import json
 from urllib.request import urlopen
 
-#import Cache.CreaCache as cache
+import Solicitud.Cache.CreaCache as cache
 
 class SolicitaApi:
 
@@ -34,6 +34,7 @@ class SolicitaApi:
 
     def preguntaApi(self, diccionarioVuelos, indice):
 
+        Cache = cache.Cache()
         
         lat_org = diccionarioVuelos[indice-1]["Latitud de origen"]
         long_org = diccionarioVuelos[indice-1]["Longitud de origen"]
@@ -60,22 +61,42 @@ class SolicitaApi:
         with urlopen(url_des) as json_dicc_des:
             json_data_des = json_dicc_des.read()
 
-        # Imprime el clima de la ciudad de origen (diccionario).
+        # Imprime el clima de la ciudad de destino (diccionario).
         clima_des = json.loads(json_data_des)
         print(json.dumps(clima_des,indent = 2))
 
         # Clima de la ciudad de origen:
-        print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
+        print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "°C", "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "°C","\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "°C","\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
 
         # Clima de la ciudad de destino:
-        print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] , "\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
+        print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] ,"°C","\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "°C","\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "°C","\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
 
         #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][0:3]] = { "Nombre" : clima_org ['name'] , "Clima" : clima_org['weather'][0]['main'] , "Descripcion" : clima_org ['weather'][0]['description'] , "Temperatura" : clima_org ['main']['temp'] , "Temperatura minima" : clima_org ['main']['temp_min'] , "Temperatura maxima" : clima_org ['main']['temp_max'] , "Humedad" : clima_org ['main']['humidity'] , "Velocidad del viento" : clima_org ['wind']['speed'] , "Nubes" : clima_org ['clouds']['all']}
 
         #diccionario_guardar["Ciudad"][lista_coordenadas[int(indice_prop) - 1][4:7]] = { "Nombre" : clima_des ['name'] , "Clima" : clima_des['weather'][0]['main'] , "Descripcion" : clima_des ['weather'][0]['description'] , "Temperatura" : clima_des ['main']['temp'] , "Temperatura minima" : clima_des ['main']['temp_min'] , "Temperatura maxima" : clima_des ['main']['temp_max'] , "Humedad" : clima_des ['main']['humidity'] , "Velocidad del viento" : clima_des ['wind']['speed'] , "Nubes" : clima_des ['clouds']['all']}
         
-        #Cache = cache.Cache()
+        
 
-        #print(Cache.archivo.readlines)
+        print(Cache.archivo.seek(0))
+
+        lineasCache = Cache.archivo.readlines()
+        print(lineasCache)
+
+        Cache.archivo.truncate(0)
+
+        if lineasCache.count("Subasta\n"):
+            Cache.archivo.write("La ptra parte")
+        else:
+            Cache.archivo.write("Subasta\n")
+
+        print("wo")
+
+        Cache.archivo.seek(0)
+        print(Cache.archivo.readlines())
+        
+
+        print("WE")
+
+        Cache.cerrarCache()         
 
          
