@@ -106,8 +106,9 @@ class SolicitaApi:
         else:
             Cache.archivo.write("Subasta\n")
 
-        print("wo")
-
+        keke = "Luis"
+        print(keke.count("Lu"), "perrre")
+        print(True)
         Cache.archivo.seek(0)
         print(Cache.archivo.readlines())
         
