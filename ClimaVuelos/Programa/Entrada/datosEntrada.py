@@ -60,28 +60,33 @@ for viaje in range(len(lista_ciudades)):
 
 def obtenerCiudades():
         
-        listaCiudades = {}
+    listaCiudades = {}
        
 
-        for vuelo in range(len(listaCoordenadas)):
-            
-            iata1 = listaCoordenadas[vuelo][0:3]
-            iata2 = listaCoordenadas[vuelo][4:7]
-
-            coord_lat_origen = listaCoordenadas[int(vuelo) - 1][6:]
-            coord_long_origen = listaCoordenadas[int(vuelo) - 1][14:]
-            coord_lat_destino = listaCoordenadas[int(vuelo) - 1][22:]    
-            coord_long_destino =listaCoordenadas[int(vuelo) - 1][30:]
-
-            listaCiudades[iata1] = {
-
-                "Latitud de origen" : listaCoordenadas[vuelo - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo) - 1].index(coord_long_origen)+1],
-                "Longitud de origen" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')],            
-
-            }
-            listaCiudades[iata2] = {
-
-                "Latitud de destino" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',')],#-11],
-                "Longitud de destino" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
+    for vuelo in range(len(listaCoordenadas)):
         
-            }
+        iata1 = listaCoordenadas[vuelo][0:3]
+        iata2 = listaCoordenadas[vuelo][4:7]
+
+        coord_lat_origen = listaCoordenadas[int(vuelo) - 1][6:]
+        coord_long_origen = listaCoordenadas[int(vuelo) - 1][14:]
+        coord_lat_destino = listaCoordenadas[int(vuelo) - 1][22:]    
+        coord_long_destino =listaCoordenadas[int(vuelo) - 1][30:]
+
+        listaCiudades[iata1] = {
+
+            "Latitud" : listaCoordenadas[vuelo - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo) - 1].index(coord_long_origen)+1],
+            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')],            
+
+        }
+        listaCiudades[iata2] = {
+
+            "Latitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',')],#-11],
+            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
+        }
+    print("Número de ciudades distintas")
+    print(len(listaCiudades.keys()))    
+    #print(listaCiudades)
+    return listaCiudades
+
+
