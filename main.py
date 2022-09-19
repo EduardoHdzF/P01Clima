@@ -12,7 +12,6 @@ while terminado == 1:
 
     ciudades_archivo_csv = open("dataset1.csv","r")
 
-    historial = open("lista.txt","r")
     actuliza_dicc = open("lista.txt","a+")
 
     lista_coordenadas = []    
@@ -38,22 +37,19 @@ while terminado == 1:
     
     # Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
     lista_ciudades = []
-    posicion = 1
-
+   
     for iter in range(len(lista_coordenadas)):
         
         ciudades_org_des = [lista_coordenadas[iter][0:3] , lista_coordenadas[iter][4:7]]
         lista_ciudades.append(ciudades_org_des)
-        
-    # Despliega la lista de viajes disponibles.
-    for viaje in range(len(lista_ciudades)):
-            
-        for ciudad in range(1):
 
-            print(str(posicion) + ".- " , lista_ciudades[viaje][ciudad] , " -> " , lista_ciudades[viaje][ciudad + 1])
-            posicion += 1
-    
     # Para manejar las excepciones.
+    '''
+        La función manejor de errores nos ayuda a que cuando se elija un viaje, este exista dentro de la lista de
+        disponibles, y si no, que nos desplegue un mensaje de que no eligió un valor aceptable.
+        @param el número de ciudades que se tienen disponibles.
+
+    '''
     def manejo_errores(canti_ciudades):
         
         verif = False
@@ -78,23 +74,25 @@ while terminado == 1:
 
         return ciudad_selec
 
-    indice_prop = manejo_errores(len(lista_ciudades))    
+    print( lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen)])
+    print(lista_coordenadas[int(indice_prop) - 1].index(coord_lat_origen))
+    print( str(coord_lat_origen.index(',')) + "DFFFFFFFFFFFF")
+    print(lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen))
 
-    coord_lat_origen = lista_coordenadas[int(indice_prop) - 1][6:]
-    coord_long_origen = lista_coordenadas[int(indice_prop) - 1][14:]
-    coord_lat_destino = lista_coordenadas[int(indice_prop) - 1][22:]
-    coord_long_destino = lista_coordenadas[int(indice_prop) - 1][30:]    
+    print(lista_coordenadas[int(indice_prop) - 1][8:15])
 
+    print( lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + 1])
+    
+    print( lista_coordenadas[int(indice_prop) - 1][16:23])    
+    print("laadkljalks" + str(coord_lat_destino.index(',')) )
+    print(lista_coordenadas[indice_prop - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen)+1])
+    print(lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')])
+    print(lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_long_destino) + coord_long_destino.index(',')])#-11])
+    print( lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1])
+    print(lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7])
     iata_codes = {
 
         lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7] : {
-            "Latitud de origen" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen)],
-            "Longitud de origen" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + 1],
-            "Latitud de destino" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
-            "Longitud de destino" : lista_coordenadas[int(indice_prop) - 1][lista_coordenadas[int(indice_prop) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
-        }
-
-    }        
 
     # Obtener las coordenadas de la ciudad de origen
     long_org = iata_codes [lista_coordenadas[int(indice_prop) - 1][0:3] and lista_coordenadas[int(indice_prop) - 1][4:7]] ['Longitud de origen']
@@ -108,12 +106,14 @@ while terminado == 1:
 
     ciudad_des_cache = False
 
+    historial = open("lista.txt","r+")
+
     if len(historial.readlines()) == 0:
         diccionario_guardar = { 
             "Ciudad" : {
                 
             }
-        }
+        }        
     else:
         diccionario_guardar = {}
 
@@ -121,9 +121,9 @@ while terminado == 1:
         diccionario_guardar = eval(historial.readline())               
 
         ciudad1 = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][0:3])
-
+        print(ciudad1)
         ciudad2 = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
-
+        print(ciudad2)
         if ciudad1 != None and ciudad2 != None:
 
             ciudad_org_cache = True
@@ -138,7 +138,7 @@ while terminado == 1:
     if not ciudad_org_cache and not ciudad_des_cache:
 
         # Llamada Api de ciudad de origen
-        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&units=metric" +"&appid=b2844c1e815b5b3dde610589df05cad2"
         url_org = url_modif_org
         
         with urlopen(url_org) as json_dicc_org:
@@ -148,7 +148,7 @@ while terminado == 1:
         clima_org = json.loads(json_data_org)        
         
         # Llamada Api de ciudad de destino
-        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&units=metric" + "&appid=b2844c1e815b5b3dde610589df05cad2"
         url_des = url_modif_des
 
         with urlopen(url_des) as json_dicc_des:
@@ -172,7 +172,7 @@ while terminado == 1:
         clima_org = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][0:3])
 
         # Llamada Api de ciudad de destino
-        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_modif_des = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_des) + "&lon=" + str(long_des) + "&units=metric" + "&appid=b2844c1e815b5b3dde610589df05cad2"
         url_des = url_modif_des
 
         with urlopen(url_des) as json_dicc_des:
@@ -194,7 +194,7 @@ while terminado == 1:
         clima_des = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
 
         # Llamada Api de ciudad de origen
-        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&appid=b2844c1e815b5b3dde610589df05cad2"
+        url_modif_org = "https://api.openweathermap.org/data/2.5/weather?lat=" + str(lat_org) + "&lon=" + str(long_org) + "&units=metric" + "&appid=b2844c1e815b5b3dde610589df05cad2"
         url_org = url_modif_org
 
         with urlopen(url_org) as json_dicc_org:
@@ -218,11 +218,8 @@ while terminado == 1:
         clima_des = diccionario_guardar["Ciudad"].get(lista_coordenadas[int(indice_prop) - 1][4:7])
 
         # Clima de la ciudad de origen:
-        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'] , "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
+        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['Clima'] + "\n    Descripción : " + clima_org ['Descripcion'] + "\n    Temperatura : " , clima_org ['Temperatura'], " °C", "\n    Temperatura mínima : " , clima_org ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_org ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_org ['Humedad'] , "\n    Velocidad del viento : " , clima_org ['Velocidad del viento'] , "\n    Nubes : " , clima_org ['Nubes'] , "\n    Nombre : " , clima_org ['Nombre'] , "\n\n")
 
-        # Clima de la ciudad de destino:
-        print("-- Clima de la ciudad de origen -\n    Condición actual : " + clima_des ['Clima'] + "\n    Descripción : " + clima_des ['Descripcion'] + "\n    Temperatura : " , clima_des ['Temperatura'] , "\n    Temperatura mínima : " , clima_des ['Temperatura minima'] , "\n    Temperatura máxima : " , clima_des ['Temperatura maxima'] , "\n    Humedad (%) : " , clima_des ['Humedad'] , "\n    Velocidad del viento : " , clima_des ['Velocidad del viento'] , "\n    Nubes : " , clima_des ['Nubes'] , "\n    Nombre : " , clima_des ['Nombre'])
-        
     actuliza_dicc.truncate(0)
     
     actuliza_dicc.write(str(diccionario_guardar))    
