@@ -43,16 +43,16 @@ class SolicitaApi:
 
         for vuelo in range(len(self.lista_coordenadas)):
 
-            coord_lat_origen = self.lista_coordenadas[int(vuelo) - 1][6:]
-            coord_long_origen = self.lista_coordenadas[int(vuelo) - 1][14:]
-            coord_lat_destino = self.lista_coordenadas[int(vuelo) - 1][22:]    
-            coord_long_destino = self.lista_coordenadas[int(vuelo) - 1][30:]
+            coord_lat_origen = self.lista_coordenadas[int(vuelo)][6:]
+            coord_long_origen = self.lista_coordenadas[int(vuelo)][14:]
+            coord_lat_destino = self.lista_coordenadas[int(vuelo)][22:]    
+            coord_long_destino = self.lista_coordenadas[int(vuelo)][30:]
 
             dicionarioCoordenadasVuelos[vuelo] = {
-                "Latitud de origen" : self.lista_coordenadas[vuelo - 1][self.lista_coordenadas[int(vuelo) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : self.lista_coordenadas[int(vuelo) - 1].index(coord_long_origen)+1],
-                "Longitud de origen" : self.lista_coordenadas[int(vuelo) - 1][self.lista_coordenadas[int(vuelo) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:self.lista_coordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')],            
-                "Latitud de destino" : self.lista_coordenadas[int(vuelo) - 1][self.lista_coordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:self.lista_coordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',')],#-11],
-                "Longitud de destino" : self.lista_coordenadas[int(vuelo) - 1][self.lista_coordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
+                "Latitud de origen" : self.lista_coordenadas[vuelo][self.lista_coordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : self.lista_coordenadas[int(vuelo)].index(coord_long_origen)+1],
+                "Longitud de origen" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',')],            
+                "Latitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',')],
+                "Longitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
             }
 
         return dicionarioCoordenadasVuelos    
@@ -75,12 +75,12 @@ class SolicitaApi:
 
         iata1 = listaCoordenadas[indice][0:3]
         iata2 = listaCoordenadas[indice][4:7]
-        lat_org = diccionarioVuelos[indice-1]["Latitud de origen"]
-        long_org = diccionarioVuelos[indice-1]["Longitud de origen"]
-        lat_des = diccionarioVuelos[indice-1]["Latitud de destino"]
-        long_des = diccionarioVuelos[indice-1]["Longitud de destino"]
+        lat_org = diccionarioVuelos[indice]["Latitud de origen"]
+        long_org = diccionarioVuelos[indice]["Longitud de origen"]
+        lat_des = diccionarioVuelos[indice]["Latitud de destino"]
+        long_des = diccionarioVuelos[indice]["Longitud de destino"]
 
-        if lineasCache.count(iata1) == 0:
+        if lineasCache.count(iata1+"\n") == 0:
         
             url_org = self.solicitarAPI(lat_org,long_org)
 
@@ -92,7 +92,7 @@ class SolicitaApi:
 
             # Imprime el clima de la ciudad de origen (diccionario).
             clima_org = json.loads(json_data_org)
-            #print(json.dumps(clima_org,indent = 2))
+            print(json.dumps(clima_org,indent = 2))
             #print(clima_org, "Seguro sosial")
             # Clima de la ciudad de origen:
             climaCdOrigen = "- Clima de la ciudad de origen " + iata1 + " -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_org ['wind']['speed'])+ "\n    Nubes : " + str(clima_org ['clouds']['all']) + "\n    Nombre : " + str(clima_org ['name']) + "\n\n"
@@ -100,9 +100,14 @@ class SolicitaApi:
             Cache.archivo.write(iata1+"\n")
             Cache.archivo.write(str(climaCdOrigen))
         else:
-            print("Ya he pasado la primer peurba")
+            indiceDeCiudad = lineasCache.index(iata1+"\n")+1
             
-        if lineasCache.count(iata2) == 0:
+            print("Ya he pasado la primer peurba")
+            for linea in range(10):
+
+                print(str(lineasCache[indiceDeCiudad+linea]))
+            
+        if lineasCache.count(iata2+"\n") == 0:
             # Llamada Api de ciudad de destino
             url_des = self.solicitarAPI(lat_des,long_des)
             
@@ -116,12 +121,20 @@ class SolicitaApi:
 
             # Imprime el clima de la ciudad de destino (diccionario).
             clima_des = json.loads(json_data_des)
-            #print(json.dumps(clima_des,indent = 2))     
+            print(json.dumps(clima_des,indent = 2))     
             # Clima de la ciudad de destino:
             climaCdDestino = "- Clima de la ciudad de destino " + iata2 + " -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_des ['main']['temp']) +"°C"+"\n    Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C"+"\n    Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n    Nubes : " + str(clima_des ['clouds']['all']) + "\n    Nombre : " + str(clima_des ['name'])+ "\n\n"
             print(climaCdDestino)
+            Cache.archivo.write(iata2+"\n")
             Cache.archivo.write(str(climaCdDestino))
-    
+        else:
+            print("iata2 Repetido")
+            indiceDeCiudad = lineasCache.index(iata2+"\n")+1
+            for linea in range(10):
+
+                print(str(lineasCache[indiceDeCiudad+linea]))
+                
+
         
 
         

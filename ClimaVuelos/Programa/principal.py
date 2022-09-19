@@ -61,7 +61,7 @@ def manejo_errores(canti_ciudades):
             except ValueError:
                 print("ERROR : Solo se pueden introducir valores numéricos.")
 
-        return ciudad_selec
+        return ciudad_selec-1
 
 
 """
@@ -71,7 +71,7 @@ terminado  = 1
 while terminado == 1:
     print("--- CLIMA ---")
 
-    Cache = Cache()
+    ACache = Cache()
     #Cache.archivo.truncate(0)
 
     coordenadas = entrada.listaCoordenadas
@@ -95,5 +95,5 @@ while terminado == 1:
     diccionarioCiudades = entrada.obtenerCiudades()
 
     #print(diccionarioCiudades)
-
+    ACache.cerrarCache()
     entrada.ciudades_archivo_csv.close()

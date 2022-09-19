@@ -1,56 +1,24 @@
-- Clima de la ciudad de origen AGU -
+ACA
+- Clima de la ciudad de origen ACA -
     Condición actual : Clouds
     Descripción : overcast clouds
-    Temperatura : 24.22°C
-    Temperatura mínima : 24.22°C
-    Temperatura máxima : 24.22°C
-    Humedad (%) : 92
-    Velocidad del viento : 1.45
-    Nubes : 100
-    Nombre : Playa Blanca
-
-('- Clima de la ciudad de destino DFW -\n    Condición actual : Clouds\n    Descripción : overcast clouds\n    Temperatura : ', 15.12, '°C', '\n    Temperatura mínima : ', 15, '°C', '\n    Temperatura máxima : ', 15.66, '°C', '\n    Humedad (%) : ', 92, '\n    Velocidad del viento : ', 1.54, '\n    Nubes : ', 100, '\n    Nombre : ', 'Pantitlán', '\n\n')- Clima de la ciudad de origen AGU -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 24.22°C
-    Temperatura mínima : 24.22°C
-    Temperatura máxima : 24.22°C
-    Humedad (%) : 92
-    Velocidad del viento : 1.45
-    Nubes : 100
-    Nombre : Playa Blanca
-
-- Clima de la ciudad de destino DFW -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 15.12°C
-    Temperatura mínima : 15°C
-    Temperatura máxima : 15.66°C
-    Humedad (%) : 92
-    Velocidad del viento : 1.54
-    Nubes : 100
-    Nombre : Pantitlán
-
-AGU
-- Clima de la ciudad de origen AGU -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 24.22°C
-    Temperatura mínima : 24.22°C
-    Temperatura máxima : 24.22°C
-    Humedad (%) : 92
-    Velocidad del viento : 1.45
-    Nubes : 100
-    Nombre : Playa Blanca
-
-- Clima de la ciudad de destino DFW -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 15.66°C
-    Temperatura mínima : 15.61°C
-    Temperatura máxima : 15.66°C
+    Temperatura : 25.07°C
+    Temperatura mínima : 25.07°C
+    Temperatura máxima : 25.07°C
     Humedad (%) : 89
-    Velocidad del viento : 0.83
+    Velocidad del viento : 2.68
+    Nubes : 100
+    Nombre : Acapulco de Juárez
+
+MEX
+- Clima de la ciudad de destino MEX -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 15.59°C
+    Temperatura mínima : 15.57°C
+    Temperatura máxima : 15.66°C
+    Humedad (%) : 88
+    Velocidad del viento : 1.34
     Nubes : 100
     Nombre : Pantitlán
 
