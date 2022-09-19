@@ -72,7 +72,7 @@ while terminado == 1:
     print("--- CLIMA ---")
 
     Cache = Cache()
-    Cache.archivo.truncate(0)
+    #Cache.archivo.truncate(0)
 
     coordenadas = entrada.listaCoordenadas
 

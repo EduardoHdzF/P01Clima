@@ -1,3 +1,56 @@
-{'coord': {'lon': -99.0721, 'lat': 17.6016}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 14.79, 'feels_like': 14.88, 'temp_min': 14.79, 'temp_max': 14.79, 'pressure': 1014, 'humidity': 98, 'sea_level': 1014, 'grnd_level': 814}, 'visibility': 3965, 'wind': {'speed': 1.23, 'deg': 204, 'gust': 1.68}, 'clouds': {'all': 100}, 'dt': 1663563120, 'sys': {'country': 'MX', 'sunrise': 1663503884, 'sunset': 1663547774}, 'timezone': -18000, 'id': 3514021, 'name': 'Zitlala', 'cod': 200}
-{'coord': {'lon': -99.0721, 'lat': 19.4363}, 'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}], 'base': 'stations', 'main': {'temp': 15.66, 'feels_like': 15.61, 'temp_min': 15.61, 'temp_max': 15.66, 'pressure': 1016, 'humidity': 89, 'sea_level': 1016, 'grnd_level': 785}, 'visibility': 10000, 'wind': {'speed': 1.14, 'deg': 23, 'gust': 2.1}, 'clouds': {'all': 100}, 'dt': 1663563121, 'sys': {'type': 2, 'id': 2040357, 'country': 'MX', 'sunrise': 1663503866, 'sunset': 1663547792}, 'timezone': -18000, 'id': 3521944, 'name': 'Pantitlán', 'cod': 200}
-seguro
+- Clima de la ciudad de origen AGU -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 24.22°C
+    Temperatura mínima : 24.22°C
+    Temperatura máxima : 24.22°C
+    Humedad (%) : 92
+    Velocidad del viento : 1.45
+    Nubes : 100
+    Nombre : Playa Blanca
+
+('- Clima de la ciudad de destino DFW -\n    Condición actual : Clouds\n    Descripción : overcast clouds\n    Temperatura : ', 15.12, '°C', '\n    Temperatura mínima : ', 15, '°C', '\n    Temperatura máxima : ', 15.66, '°C', '\n    Humedad (%) : ', 92, '\n    Velocidad del viento : ', 1.54, '\n    Nubes : ', 100, '\n    Nombre : ', 'Pantitlán', '\n\n')- Clima de la ciudad de origen AGU -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 24.22°C
+    Temperatura mínima : 24.22°C
+    Temperatura máxima : 24.22°C
+    Humedad (%) : 92
+    Velocidad del viento : 1.45
+    Nubes : 100
+    Nombre : Playa Blanca
+
+- Clima de la ciudad de destino DFW -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 15.12°C
+    Temperatura mínima : 15°C
+    Temperatura máxima : 15.66°C
+    Humedad (%) : 92
+    Velocidad del viento : 1.54
+    Nubes : 100
+    Nombre : Pantitlán
+
+AGU
+- Clima de la ciudad de origen AGU -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 24.22°C
+    Temperatura mínima : 24.22°C
+    Temperatura máxima : 24.22°C
+    Humedad (%) : 92
+    Velocidad del viento : 1.45
+    Nubes : 100
+    Nombre : Playa Blanca
+
+- Clima de la ciudad de destino DFW -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 15.66°C
+    Temperatura mínima : 15.61°C
+    Temperatura máxima : 15.66°C
+    Humedad (%) : 89
+    Velocidad del viento : 0.83
+    Nubes : 100
+    Nombre : Pantitlán
+

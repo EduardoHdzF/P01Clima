@@ -80,7 +80,7 @@ class SolicitaApi:
         lat_des = diccionarioVuelos[indice-1]["Latitud de destino"]
         long_des = diccionarioVuelos[indice-1]["Longitud de destino"]
 
-        if lineasCache.count(iata1) != 0:
+        if lineasCache.count(iata1) == 0:
         
             url_org = self.solicitarAPI(lat_org,long_org)
 
@@ -94,8 +94,15 @@ class SolicitaApi:
             clima_org = json.loads(json_data_org)
             #print(json.dumps(clima_org,indent = 2))
             #print(clima_org, "Seguro sosial")
-        
-        if lineasCache.count(iata2) != 0:
+            # Clima de la ciudad de origen:
+            climaCdOrigen = "- Clima de la ciudad de origen " + iata1 + " -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_org ['wind']['speed'])+ "\n    Nubes : " + str(clima_org ['clouds']['all']) + "\n    Nombre : " + str(clima_org ['name']) + "\n\n"
+            print(climaCdOrigen)
+            Cache.archivo.write(iata1+"\n")
+            Cache.archivo.write(str(climaCdOrigen))
+        else:
+            print("Ya he pasado la primer peurba")
+            
+        if lineasCache.count(iata2) == 0:
             # Llamada Api de ciudad de destino
             url_des = self.solicitarAPI(lat_des,long_des)
             
@@ -109,18 +116,19 @@ class SolicitaApi:
 
             # Imprime el clima de la ciudad de destino (diccionario).
             clima_des = json.loads(json_data_des)
-            print(json.dumps(clima_des,indent = 2))
-       
+            #print(json.dumps(clima_des,indent = 2))     
+            # Clima de la ciudad de destino:
+            climaCdDestino = "- Clima de la ciudad de destino " + iata2 + " -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_des ['main']['temp']) +"°C"+"\n    Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C"+"\n    Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n    Nubes : " + str(clima_des ['clouds']['all']) + "\n    Nombre : " + str(clima_des ['name'])+ "\n\n"
+            print(climaCdDestino)
+            Cache.archivo.write(str(climaCdDestino))
     
-        # Clima de la ciudad de origen:
-        print("- Clima de la ciudad de origen -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " , clima_org ['main']['temp'] , "°C", "\n    Temperatura mínima : " , clima_org ['main']['temp_min'] , "°C","\n    Temperatura máxima : " , clima_org ['main']['temp_max'] , "°C","\n    Humedad (%) : " , clima_org ['main']['humidity'] , "\n    Velocidad del viento : " , clima_org ['wind']['speed'] , "\n    Nubes : " , clima_org ['clouds']['all'] , "\n    Nombre : " , clima_org ['name'] , "\n\n")
-
-        # Clima de la ciudad de destino:
-        print("- Clima de la ciudad de destino -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " , clima_des ['main']['temp'] ,"°C","\n    Temperatura mínima : " , clima_des ['main']['temp_min'] , "°C","\n    Temperatura máxima : " , clima_des ['main']['temp_max'] , "°C","\n    Humedad (%) : " , clima_des ['main']['humidity'] , "\n    Velocidad del viento : " , clima_des ['wind']['speed'] , "\n    Nubes : " , clima_des ['clouds']['all'] , "\n    Nombre : " , clima_des ['name'])
+        
 
         
-        Cache.archivo.write(str(clima_org)+"\n") 
-        Cache.archivo.write(str(clima_des)+"\n")
+
+        
+        #Cache.archivo.write(str(clima_org)+"\n") 
+        #Cache.archivo.write(str(clima_des)+"\n")
         
         Cache.archivo.seek(0)
 
@@ -131,12 +139,12 @@ class SolicitaApi:
 
         #Cache.archivo.truncate(0)
 
-        if lineasCache.count(clima_org) == 0:
+        """if lineasCache.count(clima_org) == 0:
             #haces una función para literal pedir eso            
             Cache.archivo.write("seguro")
         else:
             Cache.archivo.write("Subasta\n")
-
+        """
         keke = "Luis come caca"
         print(keke.count("c"), "perrre")
         print(True)
