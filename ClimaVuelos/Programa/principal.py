@@ -47,7 +47,7 @@ def manejo_errores(canti_ciudades):
 
             try:
 
-                ciudad_selec = int(input("Escoge un viaje:"))
+                ciudad_selec = int(input("Escoge un viaje (revisa la lista):\n"))
 
                 if ciudad_selec > 0 and ciudad_selec <= canti_ciudades:
 

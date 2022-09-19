@@ -29,7 +29,6 @@ for iter in range(len(ciudades_archivo_csv.readlines())):
 
 listaCoordenadas.sort()
 
-print(listaCoordenadas)
 
 # Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
 lista_ciudades = []
@@ -43,6 +42,9 @@ for iter in range(len(listaCoordenadas)):
     Imprime los vuelos distinguibles para que el usuario lo pueda ver y elegir el suyo
 """
 def imprimeVuelos():
+
+    print("Seleccione el viaje que desea realizar para saber el clima de cada ciudad (origen y destino):")
+
     for viaje in range(len(lista_ciudades)):
 
         ciudad = 0
@@ -78,9 +80,6 @@ def obtenerCiudades():
             "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
         }
 
-    #print("Número de ciudades distintas")
-    #print(len(listaCiudades.keys()))    
-    #print(listaCiudades)
     return listaCiudades
 
 
