@@ -1,6 +1,14 @@
 import Entrada.datosEntrada as entrada
+from Solicitud.Cache.CreaCache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
-
+"""
+    Documento en donde se ejecutará todo el programa, aquí es donde se 
+    moverá el menú de opciones.
+"""
+"""
+    Método que nos ayuda a que el usuario decida si desea salir del programa o no
+    regresa un número que nos servirá más adelante para salir del programa.
+"""
 def finaliza():
     
     verif = False
@@ -55,24 +63,37 @@ def manejo_errores(canti_ciudades):
 
         return ciudad_selec
 
-print("w")
 
+"""
+    Ciclo que nos ayudará a que el usuario pueda seguir consultando los diversos climas o no.
+"""
 terminado  = 1
 while terminado == 1:
-    print("--- CLIMA ---")           
+    print("--- CLIMA ---")
+
+    Cache = Cache()
+    Cache.archivo.truncate(0)
+
     coordenadas = entrada.listaCoordenadas
+
+    entrada.imprimeVuelos()
+
     indice_prop = manejo_errores(len(entrada.lista_ciudades))
+
     Clase = SolicitaApi(coordenadas ,indice_prop)
+
     diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
+
     #Clase.solicitarAPI()
     Clase.preguntaApi(diccionarioCoordenadas, indice_prop)
-
+    
     # El usuario decide si se finaliza el programa o no.
     terminado = finaliza()
-    
-   
-    
+
     #print(diccionarioCoordenadas)
+    
     diccionarioCiudades = entrada.obtenerCiudades()
-    print(diccionarioCiudades)
+
+    #print(diccionarioCiudades)
+
     entrada.ciudades_archivo_csv.close()
