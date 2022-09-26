@@ -82,3 +82,58 @@ ORD
     Nubes : 20
     Nombre : Rosemont
 
+VSA
+Nombre de la ciudad : Dos Montes
+
+
+- Clima : overcast clouds
+- Temperatura : 24.97°C
+    - Temperatura mínima : 24.97°C
+    - Temperatura máxima : 24.97°C
+- Humedad (%) : 92
+- Velocidad del viento : 1.99
+
+ZCL
+Nombre de la ciudad : San Antonio
+
+
+- Clima : scattered clouds
+- Temperatura : 17.82°C
+    - Temperatura mínima : 17.82°C
+    - Temperatura máxima : 17.82°C
+- Humedad (%) : 51
+- Velocidad del viento : 3.09
+
+CJS
+Nombre de la ciudad : Manuel F. Martínez
+
+
+- Clima : broken clouds
+- Temperatura : 25.93°C
+    - Temperatura mínima : 23.67°C
+    - Temperatura máxima : 27.06°C
+- Humedad (%) : 35
+- Velocidad del viento : 3.09
+
+BJX
+Nombre de la ciudad : Mezquite de Chávez
+
+
+- Clima : broken clouds
+- Temperatura : 16.54°C
+    - Temperatura mínima : 16.54°C
+    - Temperatura máxima : 16.54°C
+- Humedad (%) : 63
+- Velocidad del viento : 3.76
+
+DFW
+Nombre de la ciudad : Grapevine
+
+
+- Clima : few clouds
+- Temperatura : 25.44°C
+    - Temperatura mínima : 22.86°C
+    - Temperatura máxima : 27.36°C
+- Humedad (%) : 42
+- Velocidad del viento : 0.45
+
