@@ -1,3 +1,5 @@
+import InterfazGrafica.interfazGrafica as interfaz
+
 import Entrada.datosEntrada as entrada
 from Solicitud.Cache.CreaCache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
@@ -87,6 +89,10 @@ while terminado == 1:
     #Clase.solicitarAPI()
     Clase.preguntaApi(diccionarioCoordenadas, indice_prop)
     
+    interfaz_grafica = interfaz.interfazGrafica(entrada.lista_ciudades, diccionarioCoordenadas)
+
+    interfaz_grafica.desplega_ventana()
+
     # El usuario decide si se finaliza el programa o no.
     terminado = finaliza()
 
