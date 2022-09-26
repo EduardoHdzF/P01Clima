@@ -12,7 +12,9 @@ class SolicitaApi:
 
     enlace =  "https://api.openweathermap.org/data/2.5/weather?lat="    
 
-    def __init__(self, lista_coordenadas, indice_proporcionado):        
+    def __init__(self, lista_coordenadas, indice_proporcionado):  
+        self.clima_ciudad_origen = ''
+        self.clima_ciudad_destino = ''      
         self.lista_coordenadas = lista_coordenadas
         self.indice_proporcionado = indice_proporcionado          
     
@@ -110,7 +112,9 @@ class SolicitaApi:
             Cache.archivo.write(climaCdOrigen)            
 
         else:
+            
             indiceDeCiudad = lineasCache.index(iata1+"\n")+1
+            #indiceDeCiudad = lineasCache.index(iata1+"\n")
             
             for linea in range(10):
 
@@ -133,7 +137,7 @@ class SolicitaApi:
             # Clima de la ciudad de destino:
 
             #climaCdDestino = "- Clima de la ciudad de destino " + iata2 + " -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_des ['main']['temp']) +"°C"+"\n    Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C"+"\n    Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n    Nubes : " + str(clima_des ['clouds']['all']) + "\n    Nombre : " + str(clima_des ['name'])+ "\n\n"
-            climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed'])+ "\n\n"
+            climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n\n"
 
             self.clima_ciudad_destino = climaCdDestino 
 
@@ -144,6 +148,7 @@ class SolicitaApi:
         else:
 
             indiceDeCiudad = lineasCache.index(iata2+"\n")+1
+            #indiceDeCiudad = lineasCache.index(iata2+"\n")
             for linea in range(10):
 
                 self.clima_ciudad_destino += str(lineasCache[indiceDeCiudad+linea])
