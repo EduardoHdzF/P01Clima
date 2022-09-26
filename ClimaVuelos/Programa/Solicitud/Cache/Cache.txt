@@ -1,172 +1,66 @@
 ACA
-- Clima de la ciudad de origen ACA -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 25.07°C
-    Temperatura mínima : 25.07°C
-    Temperatura máxima : 25.07°C
-    Humedad (%) : 89
-    Velocidad del viento : 2.68
-    Nubes : 100
-    Nombre : Acapulco de Juárez
+Nombre de la ciudad : Acapulco de JuÃ¡rez
+
+
+- Clima : broken clouds
+- Temperatura : 27.32Â°C
+    - Temperatura mÃ­nima : 27.32Â°C
+    - Temperatura mÃ¡xima : 27.32Â°C
+- Humedad (%) : 79
+- Velocidad del viento : 1.79
 
 MEX
-- Clima de la ciudad de destino MEX -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 15.59°C
-    Temperatura mínima : 15.57°C
-    Temperatura máxima : 15.66°C
-    Humedad (%) : 88
-    Velocidad del viento : 1.34
-    Nubes : 100
-    Nombre : Pantitlán
-
-ZIH
-- Clima de la ciudad de origen ZIH -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 24.24°C
-    Temperatura mínima : 24.24°C
-    Temperatura máxima : 24.24°C
-    Humedad (%) : 93
-    Velocidad del viento : 1.84
-    Nubes : 100
-    Nombre : Playa Blanca
-
-CTM
-- Clima de la ciudad de destino CTM -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 25.38°C
-    Temperatura mínima : 25.38°C
-    Temperatura máxima : 25.38°C
-    Humedad (%) : 89
-    Velocidad del viento : 2.35
-    Nubes : 5
-    Nombre : Boca Río Hondo
-
-CUN
-- Clima de la ciudad de origen CUN -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 23.95°C
-    Temperatura mínima : 23.95°C
-    Temperatura máxima : 23.95°C
-    Humedad (%) : 100
-    Velocidad del viento : 2.16
-    Nubes : 1
-    Nombre : Aduana
-
-MID
-- Clima de la ciudad de destino MID -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 25.55°C
-    Temperatura mínima : 25.55°C
-    Temperatura máxima : 25.55°C
-    Humedad (%) : 93
-    Velocidad del viento : 2.68
-    Nubes : 0
-    Nombre : San Antonio Dziskal
-
-ORD
-- Clima de la ciudad de destino ORD -
-    Condición actual : Clouds
-    Descripción : few clouds
-    Temperatura : 19.28°C
-    Temperatura mínima : 17.92°C
-    Temperatura máxima : 21.08°C
-    Humedad (%) : 95
-    Velocidad del viento : 2.06
-    Nubes : 20
-    Nombre : Rosemont
-
-VSA
-Nombre de la ciudad : Dos Montes
-
-
-- Clima : overcast clouds
-- Temperatura : 24.97°C
-    - Temperatura mínima : 24.97°C
-    - Temperatura máxima : 24.97°C
-- Humedad (%) : 92
-- Velocidad del viento : 1.99
-
-ZCL
-Nombre de la ciudad : San Antonio
-
-
-- Clima : scattered clouds
-- Temperatura : 17.82°C
-    - Temperatura mínima : 17.82°C
-    - Temperatura máxima : 17.82°C
-- Humedad (%) : 51
-- Velocidad del viento : 3.09
-
-CJS
-Nombre de la ciudad : Manuel F. Martínez
+Nombre de la ciudad : PantitlÃ¡n
 
 
 - Clima : broken clouds
-- Temperatura : 25.93°C
-    - Temperatura mínima : 23.67°C
-    - Temperatura máxima : 27.06°C
-- Humedad (%) : 35
-- Velocidad del viento : 3.09
-
-BJX
-Nombre de la ciudad : Mezquite de Chávez
-
-
-- Clima : broken clouds
-- Temperatura : 16.54°C
-    - Temperatura mínima : 16.54°C
-    - Temperatura máxima : 16.54°C
-- Humedad (%) : 63
-- Velocidad del viento : 3.76
-
-DFW
-Nombre de la ciudad : Grapevine
-
-
-- Clima : few clouds
-- Temperatura : 25.44°C
-    - Temperatura mínima : 22.86°C
-    - Temperatura máxima : 27.36°C
-- Humedad (%) : 42
-- Velocidad del viento : 0.45
-
-CME
-Nombre de la ciudad : Palmas
-
-
-- Clima : few clouds
-- Temperatura : 30°C
-    - Temperatura mínima : 30°C
-    - Temperatura máxima : 30°C
-- Humedad (%) : 70
-- Velocidad del viento : 4.12
+- Temperatura : 20Â°C
+    - Temperatura mÃ­nima : 20Â°C
+    - Temperatura mÃ¡xima : 20.1Â°C
+- Humedad (%) : 49
+- Velocidad del viento : 8.23
 
 AGU
 Nombre de la ciudad : La Providencia de Arriba
 
 
 - Clima : overcast clouds
-- Temperatura : 24.99°C
-    - Temperatura mínima : 24.99°C
-    - Temperatura máxima : 24.99°C
-- Humedad (%) : 31
-- Velocidad del viento : 5.11
+- Temperatura : 22.69Â°C
+    - Temperatura mÃ­nima : 22.69Â°C
+    - Temperatura mÃ¡xima : 22.69Â°C
+- Humedad (%) : 38
+- Velocidad del viento : 6.29
 
-VER
-Nombre de la ciudad : Mata de Pita
+DFW
+Nombre de la ciudad : Grapevine
 
 
-- Clima : broken clouds
-- Temperatura : 26.97°C
-    - Temperatura mínima : 26.97°C
-    - Temperatura máxima : 26.97°C
-- Humedad (%) : 80
-- Velocidad del viento : 7.87
+- Clima : clear sky
+- Temperatura : 28.92Â°C
+    - Temperatura mÃ­nima : 27.45Â°C
+    - Temperatura mÃ¡xima : 30.22Â°C
+- Humedad (%) : 25
+- Velocidad del viento : 5.36
+
+MTY
+Nombre de la ciudad : Las Ladrilleras
+
+
+- Clima : haze
+- Temperatura : 22Â°C
+    - Temperatura mÃ­nima : 22Â°C
+    - Temperatura mÃ¡xima : 22Â°C
+- Humedad (%) : 88
+- Velocidad del viento : 6.69
+
+TLC
+Nombre de la ciudad : Canaleja
+
+
+- Clima : scattered clouds
+- Temperatura : 18Â°C
+    - Temperatura mÃ­nima : 17.81Â°C
+    - Temperatura mÃ¡xima : 18Â°C
+- Humedad (%) : 55
+- Velocidad del viento : 5.66
 
