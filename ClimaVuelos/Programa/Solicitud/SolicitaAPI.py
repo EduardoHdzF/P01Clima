@@ -31,7 +31,9 @@ class SolicitaApi:
         carpeta Clave
     """
     def obtenerId(self):
+
         archivoID = open("ClimaVuelos/Programa/Clave/clave.txt")
+
         clave = archivoID.readline()
         archivoID.close()
         return clave
@@ -97,6 +99,7 @@ class SolicitaApi:
             clima_org = json.loads(json_data_org)
             
             # Clima de la ciudad de origen:
+
             #climaCdOrigen = "- Clima de la ciudad de origen " + iata1 + " -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_org ['wind']['speed'])+ "\n    Nubes : " + str(clima_org ['clouds']['all']) + "\n    Nombre : " + str(clima_org ['name']) + "\n\n"
             climaCdOrigen = "Nombre de la ciudad : " + str(clima_org ['name']) + "\n\n\n- Clima : " + clima_org ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_org ['wind']['speed']) + "\n\n"
             
@@ -128,6 +131,7 @@ class SolicitaApi:
             clima_des = json.loads(json_data_des)
             
             # Clima de la ciudad de destino:
+
             #climaCdDestino = "- Clima de la ciudad de destino " + iata2 + " -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_des ['main']['temp']) +"°C"+"\n    Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C"+"\n    Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n    Nubes : " + str(clima_des ['clouds']['all']) + "\n    Nombre : " + str(clima_des ['name'])+ "\n\n"
             climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed'])+ "\n\n"
 
