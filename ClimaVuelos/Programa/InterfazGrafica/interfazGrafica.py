@@ -13,15 +13,17 @@ class interfazGrafica:
 
         altura = 1000
         ancho = 10000
-        coordenadas = self.coordenadas
+        #coordenadas = self.coordenadas
 
         raiz = Climas.Tk()
+        raiz.title("Climas de Aeropuertos")
 
         ventana = Climas.Canvas(raiz, height = altura, width = ancho, bg= '#F58E1F')
-        ventana.pack()
+        ventana.pack(anchor=Climas.CENTER, expand=True)
 
-        marco = Climas.Frame(raiz, bg= 'blue')
+        marco = Climas.Frame(raiz, bg= 'blue')     
         marco.place(relx=.25, rely=.15, relheight=.25, relwidth=.5)
+        #marco['padding'] = (5,10)
 
         titulo = Climas.Label(raiz, text=' - Informe del clima - ', font= ('Modern',40), bg= '#F58E1F')
         titulo.place(relx= .01, rely= .01)

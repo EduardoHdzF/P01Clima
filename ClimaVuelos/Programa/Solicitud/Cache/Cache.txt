@@ -137,3 +137,36 @@ Nombre de la ciudad : Grapevine
 - Humedad (%) : 42
 - Velocidad del viento : 0.45
 
+CME
+Nombre de la ciudad : Palmas
+
+
+- Clima : few clouds
+- Temperatura : 30°C
+    - Temperatura mínima : 30°C
+    - Temperatura máxima : 30°C
+- Humedad (%) : 70
+- Velocidad del viento : 4.12
+
+AGU
+Nombre de la ciudad : La Providencia de Arriba
+
+
+- Clima : overcast clouds
+- Temperatura : 24.99°C
+    - Temperatura mínima : 24.99°C
+    - Temperatura máxima : 24.99°C
+- Humedad (%) : 31
+- Velocidad del viento : 5.11
+
+VER
+Nombre de la ciudad : Mata de Pita
+
+
+- Clima : broken clouds
+- Temperatura : 26.97°C
+    - Temperatura mínima : 26.97°C
+    - Temperatura máxima : 26.97°C
+- Humedad (%) : 80
+- Velocidad del viento : 7.87
+
