@@ -1,84 +1,66 @@
 ACA
-- Clima de la ciudad de origen ACA -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 25.07°C
-    Temperatura mínima : 25.07°C
-    Temperatura máxima : 25.07°C
-    Humedad (%) : 89
-    Velocidad del viento : 2.68
-    Nubes : 100
-    Nombre : Acapulco de Juárez
+Nombre de la ciudad : Acapulco de JuÃ¡rez
+
+
+- Clima : broken clouds
+- Temperatura : 26Â°C
+    - Temperatura mÃ­nima : 26Â°C
+    - Temperatura mÃ¡xima : 26Â°C
+- Humedad (%) : 83
+- Velocidad del viento : 2.06
 
 MEX
-- Clima de la ciudad de destino MEX -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 15.59°C
-    Temperatura mínima : 15.57°C
-    Temperatura máxima : 15.66°C
-    Humedad (%) : 88
-    Velocidad del viento : 1.34
-    Nubes : 100
-    Nombre : Pantitlán
+Nombre de la ciudad : PantitlÃ¡n
 
-ZIH
-- Clima de la ciudad de origen ZIH -
-    Condición actual : Clouds
-    Descripción : overcast clouds
-    Temperatura : 24.24°C
-    Temperatura mínima : 24.24°C
-    Temperatura máxima : 24.24°C
-    Humedad (%) : 93
-    Velocidad del viento : 1.84
-    Nubes : 100
-    Nombre : Playa Blanca
+
+- Clima : broken clouds
+- Temperatura : 15Â°C
+    - Temperatura mÃ­nima : 15Â°C
+    - Temperatura mÃ¡xima : 15.1Â°C
+- Humedad (%) : 72
+- Velocidad del viento : 3.09
+
+BJX
+Nombre de la ciudad : Mezquite de ChÃ¡vez
+
+
+- Clima : scattered clouds
+- Temperatura : 12.21Â°C
+    - Temperatura mÃ­nima : 12.21Â°C
+    - Temperatura mÃ¡xima : 12.21Â°C
+- Humedad (%) : 88
+- Velocidad del viento : 2.66
+
+DFW
+Nombre de la ciudad : Grapevine
+
+
+- Clima : clear sky
+- Temperatura : 21.84Â°C
+    - Temperatura mÃ­nima : 19.25Â°C
+    - Temperatura mÃ¡xima : 23.46Â°C
+- Humedad (%) : 44
+- Velocidad del viento : 4.12
 
 CTM
-- Clima de la ciudad de destino CTM -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 25.38°C
-    Temperatura mínima : 25.38°C
-    Temperatura máxima : 25.38°C
-    Humedad (%) : 89
-    Velocidad del viento : 2.35
-    Nubes : 5
-    Nombre : Boca Río Hondo
+Nombre de la ciudad : Boca RÃ­o Hondo
 
-CUN
-- Clima de la ciudad de origen CUN -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 23.95°C
-    Temperatura mínima : 23.95°C
-    Temperatura máxima : 23.95°C
-    Humedad (%) : 100
-    Velocidad del viento : 2.16
-    Nubes : 1
-    Nombre : Aduana
 
-MID
-- Clima de la ciudad de destino MID -
-    Condición actual : Clear
-    Descripción : clear sky
-    Temperatura : 25.55°C
-    Temperatura mínima : 25.55°C
-    Temperatura máxima : 25.55°C
-    Humedad (%) : 93
-    Velocidad del viento : 2.68
-    Nubes : 0
-    Nombre : San Antonio Dziskal
+- Clima : broken clouds
+- Temperatura : 23.69Â°C
+    - Temperatura mÃ­nima : 23.69Â°C
+    - Temperatura mÃ¡xima : 23.69Â°C
+- Humedad (%) : 92
+- Velocidad del viento : 2.77
 
-ORD
-- Clima de la ciudad de destino ORD -
-    Condición actual : Clouds
-    Descripción : few clouds
-    Temperatura : 19.28°C
-    Temperatura mínima : 17.92°C
-    Temperatura máxima : 21.08°C
-    Humedad (%) : 95
-    Velocidad del viento : 2.06
-    Nubes : 20
-    Nombre : Rosemont
+AGU
+Nombre de la ciudad : La Providencia de Arriba
+
+
+- Clima : scattered clouds
+- Temperatura : 14Â°C
+    - Temperatura mÃ­nima : 14Â°C
+    - Temperatura mÃ¡xima : 14Â°C
+- Humedad (%) : 62
+- Velocidad del viento : 5.14
 

@@ -6,7 +6,8 @@
     existen en la lista dada.
 '''
 
-ciudades_archivo_csv = open('ClimaVuelos\Programa\Entrada\dataset1.csv', 'r+')
+ciudades_archivo_csv = open('ClimaVuelos/Programa/Entrada/dataset1.csv', 'r+')
+
 
 listaCoordenadas = []
 
@@ -63,21 +64,21 @@ def obtenerCiudades():
         iata1 = listaCoordenadas[vuelo][0:3]
         iata2 = listaCoordenadas[vuelo][4:7]
 
-        coord_lat_origen = listaCoordenadas[int(vuelo) - 1][6:]
-        coord_long_origen = listaCoordenadas[int(vuelo) - 1][14:]
-        coord_lat_destino = listaCoordenadas[int(vuelo) - 1][22:]    
-        coord_long_destino =listaCoordenadas[int(vuelo) - 1][30:]
+        coord_lat_origen = listaCoordenadas[int(vuelo)][6:]
+        coord_long_origen = listaCoordenadas[int(vuelo)][14:]
+        coord_lat_destino = listaCoordenadas[int(vuelo)][22:]    
+        coord_long_destino =listaCoordenadas[int(vuelo)][30:]
 
         listaCiudades[iata1] = {
 
-            "Latitud" : listaCoordenadas[vuelo - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo) - 1].index(coord_long_origen)+1],
-            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')],            
-
+            "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo)].index(coord_long_origen)],
+            "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo)].index(coord_lat_destino) + 1],            
         }
         listaCiudades[iata2] = {
 
-            "Latitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',')],#-11],
-            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
+
+            "Latitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
+            "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
         }
 
     return listaCiudades
