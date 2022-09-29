@@ -96,9 +96,8 @@ while terminado == 1:
 
     # El usuario decide si se finaliza el programa o no.
     terminado = finaliza()
-
     if terminado == 0:
-        quit()
+        Clase.terminaHilo()
 
     #print(diccionarioCoordenadas)
     

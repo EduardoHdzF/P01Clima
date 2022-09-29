@@ -1,24 +1,31 @@
 import json
+from logging import shutdown
 from urllib.request import urlopen
 
 import Solicitud.Cache.CreaCache as cache
 import Entrada.datosEntrada as entrada
 
-import threading
+import threading 
+import time
 
 
 class SolicitaApi:
 
+    Prueba = ''
     clima_ciudad_origen = ''
-    clima_ciudad_destino = ''
+    clima_ciudad_destino = ''   
+    borra_cache = '' 
 
     enlace =  "https://api.openweathermap.org/data/2.5/weather?lat="    
 
     def __init__(self, lista_coordenadas, indice_proporcionado):  
+        self.Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
+
         self.clima_ciudad_origen = ''
         self.clima_ciudad_destino = ''      
         self.lista_coordenadas = lista_coordenadas
         self.indice_proporcionado = indice_proporcionado          
+        self.borra_cache = threading.Timer(20, self.borraCache)
     
     """
         Nos hace la llamada en la API de la ciudad dada con las coordenadas proporcionadas
@@ -58,13 +65,30 @@ class SolicitaApi:
             coord_long_destino = self.lista_coordenadas[int(vuelo)][30:]
 
             dicionarioCoordenadasVuelos[vuelo] = {
-                "Latitud de origen" : self.lista_coordenadas[vuelo][self.lista_coordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : self.lista_coordenadas[int(vuelo)].index(coord_long_origen)+1],
-                "Longitud de origen" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',')],            
-                "Latitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',')],
+                #"Latitud de origen" : self.lista_coordenadas[vuelo][self.lista_coordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : self.lista_coordenadas[int(vuelo)].index(coord_long_origen)+1],
+                "Latitud de origen" : self.lista_coordenadas[vuelo][self.lista_coordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : self.lista_coordenadas[int(vuelo)].index(coord_long_origen)],
+                #"Longitud de origen" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',')],            
+                "Longitud de origen" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + 1],            
+                #"Latitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',')],
+                "Latitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
                 "Longitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
             }
 
         return dicionarioCoordenadasVuelos        
+
+    def borraCache(self):
+            print('Listo')        
+            self.Prueba.truncate(0)
+            self.Prueba.close()
+
+    def terminaHilo(self):
+        print("Terminado")
+        if self.borra_cache.is_alive():
+            self.borra_cache.cancel()
+            self.Prueba.truncate(0)
+            self.Prueba.close()
+        #time.sleep(0)
+        #self.borra_cache.cancel()
 
     """
         Nos hace el proceso para poder hacer la solicitud a la API, es decir separa  las coordenadas y nos 
@@ -72,24 +96,17 @@ class SolicitaApi:
     """
     def preguntaApi(self, diccionarioVuelos, indice):
         
-        Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
+        #Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
 
         Cache = cache.Cache()
         Cache.archivo.seek(0)
         lineasCache = Cache.archivo.readlines()
-
-        def borraCache():
-            print('Listo')        
-            Prueba.truncate(0)
-            Prueba.close()
-
-        print("Prueba : " , Prueba.readline())
-
-        if Prueba.readline() == '':
-            print("Pasooo")
-            borra_cache = threading.Timer(320, borraCache)
-            borra_cache.start()
         
+        #print("Prueba : " , Prueba.readline())
+
+        if self.Prueba.readline() == '':            
+            print("Pasooo")                
+            self.borra_cache.start()  
 
         diccionarioCache1 = {}
         diccionarioCache2 = {}
@@ -102,6 +119,7 @@ class SolicitaApi:
         long_org = diccionarioVuelos[indice]["Longitud de origen"]
         lat_des = diccionarioVuelos[indice]["Latitud de destino"]
         long_des = diccionarioVuelos[indice]["Longitud de destino"]
+        print("Lista de coordenadas: \n", listaCoordenadas)
         print(iata1 , " +++ " , iata2)
 
         if lineasCache.count(iata1+"\n") == 0:
