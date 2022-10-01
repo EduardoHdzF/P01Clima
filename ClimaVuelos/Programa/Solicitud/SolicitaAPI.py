@@ -1,31 +1,31 @@
 import json
-from logging import shutdown
 from urllib.request import urlopen
 
 import Solicitud.Cache.CreaCache as cache
 import Entrada.datosEntrada as entrada
 
-import threading 
-import time
-
+#import time
+#from threading import Timer
 
 class SolicitaApi:
 
-    Prueba = ''
+    #Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
     clima_ciudad_origen = ''
     clima_ciudad_destino = ''   
-    borra_cache = '' 
+    #borra_cache = '' 
 
     enlace =  "https://api.openweathermap.org/data/2.5/weather?lat="    
 
-    def __init__(self, lista_coordenadas, indice_proporcionado):  
-        self.Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
+    #def __init__(self, lista_coordenadas, indice_proporcionado):  
+    def __init__(self, lista_coordenadas):  
+        #self.Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
 
-        self.clima_ciudad_origen = ''
-        self.clima_ciudad_destino = ''      
+        #self.clima_ciudad_origen = ''
+        #self.clima_ciudad_destino = ''      
         self.lista_coordenadas = lista_coordenadas
-        self.indice_proporcionado = indice_proporcionado          
-        self.borra_cache = threading.Timer(20, self.borraCache)
+        #self.indice_proporcionado = indice_proporcionado
+        self.terminado = False          
+        #self.borra_cache = threading.Timer(10, self.borraCache)
     
     """
         Nos hace la llamada en la API de la ciudad dada con las coordenadas proporcionadas
@@ -74,21 +74,48 @@ class SolicitaApi:
                 "Longitud de destino" : self.lista_coordenadas[int(vuelo)][self.lista_coordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]
             }
 
-        return dicionarioCoordenadasVuelos        
+        return dicionarioCoordenadasVuelos                        
 
-    def borraCache(self):
-            print('Listo')        
-            self.Prueba.truncate(0)
-            self.Prueba.close()
+    '''def tempo(self, estado):
+        #t = Timer(10, self.borraCache)
+        #t.start()
+        #if estado == 1:
+        self.Prueba = Timer(10, self.borraCache(estado))
+        self.Prueba.start()
+        t = Timer(10, self.borraCache(estado))
+        t.start()'''
 
-    def terminaHilo(self):
+    #def borraCache(self, estado):
+    '''def borraCache(self):
+        print('Listo para borrar')    
+        #if estado == 1:
+        self.Prueba.truncate(0)
+        self.Prueba.close()        
+        #self.t.cancel()'''
+
+    '''def cierra_programa(self):
+        print("Finalizado")    
+        self.Prueba.truncate(0)
+        self.Prueba.close()'''
+
+    #def terminaHilo(self):    
+        #print("Paso", self.borra_cache.is_alive() , self.borra_cache.name, threading.TIMEOUT_MAX)            
+       # _thread.interrupt_main()
+    '''
+    try:
+        _thread.interrupt_main()                
+    
+    except KeyboardInterrupt:
         print("Terminado")
-        if self.borra_cache.is_alive():
-            self.borra_cache.cancel()
-            self.Prueba.truncate(0)
-            self.Prueba.close()
-        #time.sleep(0)
-        #self.borra_cache.cancel()
+        _thread.exit()
+    '''        
+
+    '''class Repertidor(Timer):
+        def run(self):
+            while not self.finished.wait(self.interval):
+                self.function(*self.args, **self.kwargs)                
+            print("Hecho")
+            #SolicitaApi.Prueba.truncate(0)'''
 
     """
         Nos hace el proceso para poder hacer la solicitud a la API, es decir separa  las coordenadas y nos 
@@ -103,10 +130,50 @@ class SolicitaApi:
         lineasCache = Cache.archivo.readlines()
         
         #print("Prueba : " , Prueba.readline())
+        
+        #print("*****Estado :" , estado, self.Prueba.readline())
 
-        if self.Prueba.readline() == '':            
-            print("Pasooo")                
-            self.borra_cache.start()  
+        '''if self.Prueba.readline() == '' and estado == 1:
+            timer = Repetidor(10, self.borraCache)
+            timer.start()'''
+
+            #time.sleep(1)
+
+        #elif estado == 0:
+            
+        '''time.sleep(1)
+        timer.cancel()'''
+            
+            #self.tempo(estado)
+        #elif estado == 0:
+        #    self.borraCache(estado)
+            #t = Timer(5, self.borraCache(estado))
+            #t.start()
+            #print('Hecho')
+        #elif estado == 0:
+            
+        #    print("Pasoooou")
+        #    timer = self.Repertidor(1, self.cierra_programa)
+        #    timer.start()
+
+        #    time.sleep(1)
+
+        #    timer.cancel()
+            #self.Prueba.truncate(0)
+            #self.Prueba.close()
+            #quit()
+                       
+
+        '''timer = self.Repertidor(1, self.borraCache)
+        timer.start()'''
+
+        #time.sleep(5)
+
+        #timer.cancel() 
+        
+        #if self.Prueba.readline() == '':            
+            #print("Pasooo")                
+            #self.borra_cache.start()  
 
         diccionarioCache1 = {}
         diccionarioCache2 = {}
@@ -194,6 +261,6 @@ class SolicitaApi:
 
                 print(str(lineasCache[indiceDeCiudad+linea]))
             
-            print("2--------CD: " , self.clima_ciudad_destino)
-        
+            print("2--------CD: " , self.clima_ciudad_destino)                
+
         Cache.cerrarCache()        

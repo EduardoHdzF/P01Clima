@@ -11,7 +11,7 @@ from Solicitud.SolicitaAPI import SolicitaApi
     Método que nos ayuda a que el usuario decida si desea salir del programa o no
     regresa un número que nos servirá más adelante para salir del programa.
 """
-def finaliza():
+'''def finaliza():
     
     verif = False
 
@@ -34,13 +34,14 @@ def finaliza():
         except ValueError:
             print("ERROR : Solo se pueden introducir valores numéricos.")
 
-    return termina
+    return termina'''
 
 #Para manejar las excepciones.
 '''
     La función manejor de errores nos ayuda a que cuando se elija un viaje, este exista dentro de la lista de
     disponibles, y si no, que nos desplegue un mensaje de que no eligió un valor aceptable.
     @param el número de ciudades que se tienen disponibles.
+'''
 '''
 def manejo_errores(canti_ciudades):
         
@@ -65,44 +66,50 @@ def manejo_errores(canti_ciudades):
                 print("ERROR : Solo se pueden introducir valores numéricos.")
 
         return ciudad_selec-1
+'''
 
 
 """
     Ciclo que nos ayudará a que el usuario pueda seguir consultando los diversos climas o no.
 """
-terminado  = 1
-while terminado == 1:
-    print("--- CLIMA ---")
+#terminado  = 1
+#while terminado == 1:
+    #print("--- CLIMA ---")
 
-    ACache = Cache()
-    #Cache.archivo.truncate(0)
+ACache = Cache()
+#Cache.archivo.truncate(0)
 
-    coordenadas = entrada.listaCoordenadas
+coordenadas = entrada.listaCoordenadas
 
-    entrada.imprimeVuelos()
+#entrada.imprimeVuelos()
 
-    indice_prop = manejo_errores(len(entrada.lista_ciudades))
+#indice_prop = manejo_errores(len(entrada.lista_ciudades))
 
-    Clase = SolicitaApi(coordenadas ,indice_prop)
+#Clase = SolicitaApi(coordenadas ,indice_prop)
+Clase = SolicitaApi(coordenadas)
 
-    diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
+diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
 
-    #Clase.solicitarAPI()
-    Clase.preguntaApi(diccionarioCoordenadas, indice_prop)
-    
-    interfaz_grafica = interfaz.interfazGrafica(entrada.lista_ciudades, diccionarioCoordenadas)
+#Clase.solicitarAPI()
+#Clase.preguntaApi(diccionarioCoordenadas, indice_prop)
 
-    interfaz_grafica.desplega_ventana()
+interfaz_grafica = interfaz.interfazGrafica(entrada.lista_ciudades, diccionarioCoordenadas)
 
-    # El usuario decide si se finaliza el programa o no.
-    terminado = finaliza()
-    if terminado == 0:
-        Clase.terminaHilo()
+interfaz_grafica.desplega_ventana()
 
-    #print(diccionarioCoordenadas)
-    
-    diccionarioCiudades = entrada.obtenerCiudades()
+#time.sleep(0)
+#_thread.interrupt_main()
+# El usuario decide si se finaliza el programa o no.
+#terminado = finaliza()
+#if terminado == 0:
+#terminado = 0
 
-    #print(diccionarioCiudades)
-    ACache.cerrarCache()
-    entrada.ciudades_archivo_csv.close()
+#Clase.terminaHilo()
+
+#print(diccionarioCoordenadas)
+
+diccionarioCiudades = entrada.obtenerCiudades()
+
+#print(diccionarioCiudades)
+ACache.cerrarCache()
+entrada.ciudades_archivo_csv.close()
