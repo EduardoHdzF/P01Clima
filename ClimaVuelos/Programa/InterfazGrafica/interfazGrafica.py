@@ -6,13 +6,10 @@ class interfazGrafica:
     
     seleccion = ['']
     Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
-    #temporizador = Timer
 
     def __init__(self, viajes, coordenadas):        
         self.viajes = viajes
         self.coordenadas = coordenadas
-        #self.solicitud = SolicitaApi(self.coordenadas)
-        #self.solicitud = SolicitaApi()
 
     def solicitud_Datos(self, ind):
         self.solicitud = SolicitaApi(self.coordenadas)            
@@ -22,8 +19,7 @@ class interfazGrafica:
         self.t = Timer(300, self.borraCache)
         self.t.start()       
 
-    def borraCache(self):
-        print('Listo para borrar')            
+    def borraCache(self):         
         self.Cache.truncate(0)
         self.Cache.close()                
 
@@ -31,7 +27,6 @@ class interfazGrafica:
         
         altura = 1000
         ancho = 10000
-        #coordenadas = self.coordenadas
 
         raiz = tk.Tk()
         raiz.title("Climas de Aeropuertos")        
@@ -41,7 +36,6 @@ class interfazGrafica:
 
         marco = tk.Frame(raiz, bg= 'blue')     
         marco.place(relx=.25, rely=.15, relheight=.25, relwidth=.5)
-        #marco['padding'] = (5,10)
 
         titulo = tk.Label(raiz, text=' - Informe del clima - ', font= ('Modern',40), bg= '#F58E1F')
         titulo.place(relx= .01, rely= .01)
@@ -54,17 +48,7 @@ class interfazGrafica:
 
         barra = tk.Scrollbar(marco)
         barra.pack(side= tk.RIGHT, fill= tk.Y)
-        #barra.place(relx= .1, rely= .1)
 
-        '''
-        lista_viajes = Climas.Listbox(raiz, height=10, width=10, yscrollcommand= barra.set(), cursor = 'hand2',bg= 'green', selectmode= 'single')
-        
-        for viajes_disponibles in range(len(self.viajes)):
-            lista_viajes.insert(viajes_disponibles + 1, self.viajes[viajes_disponibles])
-        
-        #lista_viajes.place(height= 300, width= 500)        
-        lista_viajes.place(relx= .25, rely= .125, relheight= .5, relwidth= .5)        
-        '''    
         lista_viajes = tk.Listbox(marco, yscrollcommand= barra.set, width= 125, font= 'Modern')
         
         for viajes_disponibles in range(len(self.viajes)):
@@ -89,14 +73,13 @@ class interfazGrafica:
 
             eti_seleccion = tk.Label(raiz, text= self.seleccion, bg= 'red', font= ('Modern', 15))
             eti_seleccion.place(relx= 0.82, rely= 0.15,height= 250, width=250)          
-
-            '''
+            
             clima_cd_origen = tk.Label(raiz, text= 'Origen', font= ('Modern',20), bg= '#F58E1F')            
             clima_cd_origen.place(relx= 0.11, rely= 0.42)
 
             clima_cd_destino = tk.Label(raiz, text= 'Destino', font= ('Modern',20), bg= '#F58E1F')
             clima_cd_destino.place(relx= 0.56, rely= 0.42)
-            '''                        
+                                    
             
             ind = 0
             
@@ -110,11 +93,6 @@ class interfazGrafica:
 
             clima_ciudad_destino = tk.Label(raiz, text= self.solicitud.clima_ciudad_destino, bg= '#39D2E7', font= ('Modern', 20), justify= 'left')
             clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)            
-
-        '''
-        entrada = Climas.Entry(raiz, text= 'Selecciona la opción disponible')
-        entrada.place(relx=.5, rely=.5, height= 100 , width=100)
-        '''        
 
         self.solicitud = SolicitaApi(self.coordenadas)
 

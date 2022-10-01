@@ -80,8 +80,6 @@ class SolicitaApi:
         long_org = diccionarioVuelos[indice]["Longitud de origen"]
         lat_des = diccionarioVuelos[indice]["Latitud de destino"]
         long_des = diccionarioVuelos[indice]["Longitud de destino"]
-        print("Lista de coordenadas: \n", listaCoordenadas)
-        print(iata1 , " +++ " , iata2)
 
         if lineasCache.count(iata1+"\n") == 0:
         
@@ -97,29 +95,20 @@ class SolicitaApi:
             clima_org = json.loads(json_data_org)
             
             # Clima de la ciudad de origen:
-
-            #climaCdOrigen = "- Clima de la ciudad de origen " + iata1 + " -\n    Condición actual : " + clima_org ['weather'][0]['main'] + "\n    Descripción : " + clima_org ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_org ['wind']['speed'])+ "\n    Nubes : " + str(clima_org ['clouds']['all']) + "\n    Nombre : " + str(clima_org ['name']) + "\n\n"
             climaCdOrigen = "Nombre de la ciudad : " + str(clima_org ['name']) + "\n\n\n- Clima : " + clima_org ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_org ['wind']['speed']) + "\n\n"
                         
             self.clima_ciudad_origen = climaCdOrigen
-            print("1--------CO: " , self.clima_ciudad_origen)
 
-            print(climaCdOrigen)
             Cache.archivo.write(iata1+"\n")
             Cache.archivo.write(climaCdOrigen)            
 
         else:
             
             indiceDeCiudad = lineasCache.index(iata1+"\n")+1
-            #indiceDeCiudad = lineasCache.index(iata1+"\n")
             
             for linea in range(10):
 
                 self.clima_ciudad_origen += str(lineasCache[indiceDeCiudad+linea])
-
-                print(str(lineasCache[indiceDeCiudad+linea]))
-
-            print("2--------CO: " , self.clima_ciudad_origen)
             
         if lineasCache.count(iata2+"\n") == 0:
             # Llamada Api de ciudad de destino
@@ -134,27 +123,19 @@ class SolicitaApi:
             clima_des = json.loads(json_data_des)
             
             # Clima de la ciudad de destino:
-
-            #climaCdDestino = "- Clima de la ciudad de destino " + iata2 + " -\n    Condición actual : " + clima_des ['weather'][0]['main'] + "\n    Descripción : " + clima_des ['weather'][0]['description'] + "\n    Temperatura : " + str(clima_des ['main']['temp']) +"°C"+"\n    Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C"+"\n    Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n    Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n    Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n    Nubes : " + str(clima_des ['clouds']['all']) + "\n    Nombre : " + str(clima_des ['name'])+ "\n\n"
             climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n\n"
 
             self.clima_ciudad_destino = climaCdDestino 
-            print("1--------CD: " , self.clima_ciudad_destino)
 
-            print(climaCdDestino)
             Cache.archivo.write(iata2+"\n")
             Cache.archivo.write(str(climaCdDestino))                                           
 
         else:
 
             indiceDeCiudad = lineasCache.index(iata2+"\n")+1
-            #indiceDeCiudad = lineasCache.index(iata2+"\n")
+
             for linea in range(10):
 
-                self.clima_ciudad_destino += str(lineasCache[indiceDeCiudad+linea])
-
-                print(str(lineasCache[indiceDeCiudad+linea]))
-            
-            print("2--------CD: " , self.clima_ciudad_destino)                
+                self.clima_ciudad_destino += str(lineasCache[indiceDeCiudad+linea])                           
 
         Cache.cerrarCache()        

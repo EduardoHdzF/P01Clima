@@ -40,18 +40,6 @@ for iter in range(len(listaCoordenadas)):
     lista_ciudades.append(ciudades_org_des)
 
 """
-    Imprime los vuelos distinguibles para que el usuario lo pueda ver y elegir el suyo
-"""
-def imprimeVuelos():
-
-    print("Seleccione el viaje que desea realizar para saber el clima de cada ciudad (origen y destino):")
-
-    for viaje in range(len(lista_ciudades)):
-
-        ciudad = 0
-        print("Vuelo número " + str(viaje+1) + ".- " , lista_ciudades[viaje][ciudad] , " -> " , lista_ciudades[viaje][ciudad + 1])
-
-"""
     Nos crea una lista con las distintas ciudades que están en los vuelos con sus coordenadas
     nos regresa la lista creada
 """
