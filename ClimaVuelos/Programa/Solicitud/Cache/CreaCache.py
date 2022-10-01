@@ -7,7 +7,6 @@ class Cache:
     
         self.archivo = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","a+")
 
-
     """
         Nos cierra el archivo donde se guardará el caché
     """
