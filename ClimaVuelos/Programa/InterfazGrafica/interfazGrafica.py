@@ -1,26 +1,17 @@
 import tkinter as tk
 from Solicitud.SolicitaAPI import SolicitaApi
-
-#import time
 from threading import Timer
-
-'''class Repetidor(Timer):
-        def run(self):
-            while not self.finished.wait(self.interval):
-                self.function(*self.args, **self.kwargs)                
-            print("Hecho")
-            #SolicitaApi.Prueba.truncate(0)'''
 
 class interfazGrafica:
     
     seleccion = ['']
-    Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
-    t = Timer
+    Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
+    #temporizador = Timer
 
     def __init__(self, viajes, coordenadas):        
         self.viajes = viajes
         self.coordenadas = coordenadas
-        self.solicitud = SolicitaApi(self.coordenadas)
+        #self.solicitud = SolicitaApi(self.coordenadas)
         #self.solicitud = SolicitaApi()
 
     def solicitud_Datos(self, ind):
@@ -33,8 +24,8 @@ class interfazGrafica:
 
     def borraCache(self):
         print('Listo para borrar')            
-        self.Prueba.truncate(0)
-        self.Prueba.close()                
+        self.Cache.truncate(0)
+        self.Cache.close()                
 
     def desplega_ventana(self):
         
@@ -79,8 +70,6 @@ class interfazGrafica:
         for viajes_disponibles in range(len(self.viajes)):
             lista_viajes.insert(tk.END, self.viajes[viajes_disponibles][0] + " ---> " + self.viajes[viajes_disponibles][1])
         
-        #lista_viajes.place(height= 300, width= 500)        
-        #lista_viajes.place(relx= .25, rely= .125, relheight= .5, relwidth= .5)        
         lista_viajes.pack(side= tk.LEFT, fill= tk.BOTH)
 
         barra.config(command= lista_viajes.yview)                      
@@ -88,11 +77,9 @@ class interfazGrafica:
 
         def opcion_seleccionada(): 
 
-            self.Prueba = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")                       
+            self.Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")                       
             
-            print(raiz.winfo_viewable())
-            if self.Prueba.readline() == '' and raiz.winfo_viewable() == 1:
-                print("Entro")
+            if self.Cache.readline() == '' and raiz.winfo_viewable() == 1:
                 self.tempo()
 
             self.seleccion = lista_viajes.get(lista_viajes.curselection())   
@@ -116,16 +103,6 @@ class interfazGrafica:
             while origen.count(self.viajes[ind][0]) == 0 or destino.count(self.viajes[ind][1]) == 0:            
                 ind = ind + 1
             
-            print(origen, ' --- > ' , destino)
-
-            #self.solicitud = SolicitaApi(self.coordenadas)            
-
-            '''
-            self.solicitud = SolicitaApi(self.coordenadas)            
-            self.solicitud.preguntaApi(self.coordenadas, ind)
-            '''                            
-
-            #print("----- Valorrrrr :: " , raiz.winfo_viewable())
             self.solicitud_Datos(ind)
 
             clima_ciudad_origen = tk.Label(raiz, text= self.solicitud.clima_ciudad_origen, bg= '#43C01B', font= ('Modern', 20), justify= 'left')
@@ -134,28 +111,18 @@ class interfazGrafica:
             clima_ciudad_destino = tk.Label(raiz, text= self.solicitud.clima_ciudad_destino, bg= '#39D2E7', font= ('Modern', 20), justify= 'left')
             clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)            
 
-            #self.solicitud.terminaHilo(self.solicitud.borra_cache)
-            #self.solicitud.terminaHilo()
-
         '''
         entrada = Climas.Entry(raiz, text= 'Selecciona la opción disponible')
         entrada.place(relx=.5, rely=.5, height= 100 , width=100)
         '''        
 
         self.solicitud = SolicitaApi(self.coordenadas)
-        #self.solicitud.preguntaApi(self.coordenadas, ind)      
 
         boton = tk.Button(raiz, text= 'Buscar', font= 'Modern', command= opcion_seleccionada)
         boton.place(relx= .75, rely= 0.15,height= 100, width=100)                                        
 
         raiz.mainloop()        
         
-        self.Prueba.truncate(0)
+        self.Cache.truncate(0)
         self.t.cancel()
-        #self.solicitud_Datos(0, 0)
-        #time.sleep(1)
-        #self.solicitud.terminado = True
-        #self.solicitud.borra_cache.cancel()
-        #self.cierra_programa()
-        #self.solicitud.terminaHilo()
         
