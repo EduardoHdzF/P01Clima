@@ -1,6 +1,6 @@
 import unittest
-import Programa.Solicitud.SolicitaAPI as solicitud
-import Programa.Entrada.datosEntrada as entrada
+import Solicitud.SolicitaAPI as solicitud  #Programa.Solicitud.SolicitaAPI as solicitud
+import Entrada.datosEntrada as entrada #Programa.Entrada.datosEntrada as entrada
 
 class pruebasSolicitaApi(unittest.TestCase):
 
