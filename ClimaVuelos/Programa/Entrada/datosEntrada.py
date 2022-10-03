@@ -19,7 +19,7 @@ for iter in range(len(ciudades_archivo_csv.readlines())):
         ciudades_archivo_csv.readline()
         listaCoordenadas.append(ciudades_archivo_csv.readline())
         
-    elif iter > 1:                    
+    elif iter > 0:                    
         ciudades_archivo_csv.seek(0)
 
         if listaCoordenadas.count(ciudades_archivo_csv.readlines()[iter]) == 0:                                                
@@ -63,21 +63,21 @@ def obtenerCiudades():
         iata1 = listaCoordenadas[vuelo][0:3]
         iata2 = listaCoordenadas[vuelo][4:7]
 
-        coord_lat_origen = listaCoordenadas[int(vuelo) - 1][6:]
-        coord_long_origen = listaCoordenadas[int(vuelo) - 1][14:]
-        coord_lat_destino = listaCoordenadas[int(vuelo) - 1][22:]    
-        coord_long_destino =listaCoordenadas[int(vuelo) - 1][30:]
+        coord_lat_origen = listaCoordenadas[vuelo][6:]
+        coord_long_origen = listaCoordenadas[vuelo][14:]
+        coord_lat_destino = listaCoordenadas[vuelo][22:]    
+        coord_long_destino =listaCoordenadas[vuelo][30:]
 
         diccionarioAeropuertos[iata1] = {
-
-            "Latitud" : listaCoordenadas[vuelo - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo) - 1].index(coord_long_origen)+1],
-            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',')],            
-
+             
+            "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[vuelo].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[vuelo].index(coord_long_origen)],
+            "Longitud" : listaCoordenadas[vuelo][listaCoordenadas[vuelo].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[vuelo].index(coord_lat_destino) + 1], 
+           
         }
         diccionarioAeropuertos[iata2] = {
 
-            "Latitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',')],#-11],
-            "Longitud" : listaCoordenadas[int(vuelo) - 1][listaCoordenadas[int(vuelo) - 1].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
+            "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[vuelo].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
+            "Longitud" : listaCoordenadas[vuelo][listaCoordenadas[vuelo].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]           
         }
 
     return diccionarioAeropuertos

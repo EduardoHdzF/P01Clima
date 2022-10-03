@@ -1,6 +1,8 @@
 import unittest
-import Entrada.datosEntrada as entrada#Entrada.datosEntrada as entrada
+import Entrada.datosEntrada as entrada
+
 class pruebasEntrada(unittest.TestCase):
+    """ Clase que nos correrá las pruebas automatizadas para detectar errores en el código del archivo datosEntrada"""
     
     def test_archivoEntrada(self):
         assert len(entrada.ciudades_archivo_csv.readlines()) == 0, 'El archivo es vacío'
@@ -13,26 +15,22 @@ class pruebasEntrada(unittest.TestCase):
         self.assertNotEqual(diccionario.keys(), 0)
 
     def test_coordenadasDiccionario(self):
-        ''' Nos verifica que las coordenadas que se guardaron en cada aeropuerto del diccionario sean puros números'''
-        diccionario = entrada.obtenerCiudades()
-        #listaAerop = entrada.listaCoordenadas
+        """ Nos verifica que las coordenadas que se guardaron en cada aeropuerto del diccionario sean puros números"""
+        diccionario = entrada.obtenerCiudades()        
+        listaAerop = entrada.listaCoordenadas
         self.assertNotEqual(diccionario.keys(), 0)
-        #num = int("as12")
-
         
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+        for vuelo in range(len(listaAerop)):
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
-
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+            iata1 = listaAerop[vuelo][0:3]
+            iata2 = listaAerop[vuelo][4:7]
+            try:
+                latitud = float(diccionario[iata1]["Latitud"])
+                longitud = float(diccionario[iata2]["Longitud"])
+                
+            except:
+                print("Las coordenadas estan mal dadas, ya que se mezclan con comas(,)")
+                
 
 if __name__ == '__main__':
     unittest.main()
