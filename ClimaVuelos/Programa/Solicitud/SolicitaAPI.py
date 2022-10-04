@@ -72,8 +72,8 @@ class SolicitaApi:
         
         diccionarioCache1 = {}
         diccionarioCache2 = {}
-
-        listaCoordenadas = entrada.listaCoordenadas
+        Entrada = entrada.datosEntrada()
+        listaCoordenadas = Entrada.listaVuelos
 
         iata1 = listaCoordenadas[indice][0:3]
         iata2 = listaCoordenadas[indice][4:7]
@@ -81,8 +81,6 @@ class SolicitaApi:
         long_org = diccionarioVuelos[indice]["Longitud de origen"]
         lat_des = diccionarioVuelos[indice]["Latitud de destino"]
         long_des = diccionarioVuelos[indice]["Longitud de destino"]
-        print("Lista de coordenadas: \n", listaCoordenadas)
-        print(iata1 , " +++ " , iata2)
 
         if lineasCache.count(iata1+"\n") == 0:
         
@@ -129,7 +127,7 @@ class SolicitaApi:
             climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n\n"
 
             self.clima_ciudad_destino = climaCdDestino 
-            print("1--------CD: " , self.clima_ciudad_destino)
+            #print("1--------CD: " , self.clima_ciudad_destino)
 
             Cache.archivo.write(iata2+"\n")
             Cache.archivo.write(str(climaCdDestino))                                           

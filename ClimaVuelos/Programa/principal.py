@@ -3,20 +3,22 @@ import Entrada.datosEntrada as entrada
 from Solicitud.Cache.CreaCache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
+Entrada = entrada.datosEntrada()
+
 ACache = Cache()
 
-coordenadas = entrada.listaCoordenadas
+coordenadas = Entrada.listaVuelos
 
 Clase = SolicitaApi(coordenadas)
 
 diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
 
-interfaz_grafica = interfaz.interfazGrafica(entrada.lista_ciudades, diccionarioCoordenadas)
+interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionarioCoordenadas)
 
 interfaz_grafica.desplega_ventana()
 
-diccionarioCiudades = entrada.obtenerCiudades()
+diccionarioCiudades = Entrada.listaAeropuertos
 
 ACache.cerrarCache()
 
-entrada.ciudades_archivo_csv.close()
+Entrada.cerrarListaDatos()

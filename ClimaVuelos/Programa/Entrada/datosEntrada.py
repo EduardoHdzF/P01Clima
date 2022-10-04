@@ -5,70 +5,85 @@
     vuelos, también nos hace una lista de las coordenadas de origen y destino de los vuelos distinguibles que 
     existen en la lista dada.
 '''
+class datosEntrada:
 
-ciudades_archivo_csv = open('ClimaVuelos/Programa/Entrada/dataset1.csv', 'r+')
+    def __init__(self):
+        self.ciudades_archivo_csv = open('ClimaVuelos/Programa/Entrada/dataset1.csv', 'r+')
+        self.listaVuelos = self.obtenerListaVuelos()
+        self.listaAeropuertos = self.listaCiudades()
+
+    def obtenerListaVuelos(self):
+        """ Nos regresa una lista con los distintos vuelos que existen en todo el archivo de entrada """
+        listaCoordenadas = []
+
+        # Agregar las ciudades a mi lista (sin repeticiones).
+
+        for iter in range(len(self.ciudades_archivo_csv.readlines())):
+            
+            if iter == 0:
+                self.ciudades_archivo_csv.seek(0)
+                self.ciudades_archivo_csv.readline()
+                listaCoordenadas.append(self.ciudades_archivo_csv.readline())
+                
+            elif iter > 1:                    
+                self.ciudades_archivo_csv.seek(0)
+
+                if listaCoordenadas.count(self.ciudades_archivo_csv.readlines()[iter]) == 0:                                                
+                    self.ciudades_archivo_csv.seek(0)
+                    listaCoordenadas.append(self.ciudades_archivo_csv.readlines()[iter])                                
+                    self.ciudades_archivo_csv.seek(0)   
+
+        listaCoordenadas.sort()
+        #print(listaCoordenadas)
+        return listaCoordenadas
 
 
-listaCoordenadas = []
-
-# Agregar las ciudades a mi lista (sin repeticiones).
-
-for iter in range(len(ciudades_archivo_csv.readlines())):
-    
-    if iter == 0:
-        ciudades_archivo_csv.seek(0)
-        ciudades_archivo_csv.readline()
-        listaCoordenadas.append(ciudades_archivo_csv.readline())
+    def listaCiudades(self):
         
-    elif iter > 1:                    
-        ciudades_archivo_csv.seek(0)
+        #Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
+        lista_ciudades = []
+        lista_coordenadas = self.listaVuelos
+        for iter in range(len(lista_coordenadas)):
+            
+            ciudades_org_des = [lista_coordenadas[iter][0:3] , lista_coordenadas[iter][4:7]]
+            lista_ciudades.append(ciudades_org_des)
 
-        if listaCoordenadas.count(ciudades_archivo_csv.readlines()[iter]) == 0:                                                
-            ciudades_archivo_csv.seek(0)
-            listaCoordenadas.append(ciudades_archivo_csv.readlines()[iter])                                
-            ciudades_archivo_csv.seek(0)   
+        return lista_ciudades
 
-listaCoordenadas.sort()
+    """
+        Nos crea una lista con las distintas ciudades que están en los vuelos con sus coordenadas
+        nos regresa la lista creada
+    """
+    def obtenerCiudades(self):
+            
+        listaCiudades = {}       
+        listaCoordenadas = self.listaVuelos
 
+        for vuelo in range(len(listaCoordenadas)):
+            
+            iata1 = listaCoordenadas[vuelo][0:3]
+            iata2 = listaCoordenadas[vuelo][4:7]
 
-# Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
-lista_ciudades = []
+            coord_lat_origen = listaCoordenadas[int(vuelo)][6:]
+            coord_long_origen = listaCoordenadas[int(vuelo)][14:]
+            coord_lat_destino = listaCoordenadas[int(vuelo)][22:]    
+            coord_long_destino =listaCoordenadas[int(vuelo)][30:]
 
-for iter in range(len(listaCoordenadas)):
-    
-    ciudades_org_des = [listaCoordenadas[iter][0:3] , listaCoordenadas[iter][4:7]]
-    lista_ciudades.append(ciudades_org_des)
+            listaCiudades[iata1] = {
 
-"""
-    Nos crea una lista con las distintas ciudades que están en los vuelos con sus coordenadas
-    nos regresa la lista creada
-"""
-def obtenerCiudades():
-        
-    listaCiudades = {}       
-
-    for vuelo in range(len(listaCoordenadas)):
-        
-        iata1 = listaCoordenadas[vuelo][0:3]
-        iata2 = listaCoordenadas[vuelo][4:7]
-
-        coord_lat_origen = listaCoordenadas[int(vuelo)][6:]
-        coord_long_origen = listaCoordenadas[int(vuelo)][14:]
-        coord_lat_destino = listaCoordenadas[int(vuelo)][22:]    
-        coord_long_destino =listaCoordenadas[int(vuelo)][30:]
-
-        listaCiudades[iata1] = {
-
-            "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo)].index(coord_long_origen)],
-            "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo)].index(coord_lat_destino) + 1],            
-        }
-        listaCiudades[iata2] = {
+                "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo)].index(coord_long_origen)],
+                "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo)].index(coord_lat_destino) + 1],            
+            }
+            listaCiudades[iata2] = {
 
 
-            "Latitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
-            "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
-        }
+                "Latitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
+                "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
+            }
 
-    return listaCiudades
+        return listaCiudades
+
+    def cerrarListaDatos(self):
+        self.ciudades_archivo_csv.close()
 
 
