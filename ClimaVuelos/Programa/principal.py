@@ -23,7 +23,8 @@ def finaliza():
 
             if termina == 0 or termina == 1:
 
-                verif = True   
+                verif = True  
+                
 
             else:
 
@@ -95,6 +96,8 @@ while terminado == 1:
 
     # El usuario decide si se finaliza el programa o no.
     terminado = finaliza()
+    if terminado == 0:
+        Clase.terminaHilo()
 
     #print(diccionarioCoordenadas)
     

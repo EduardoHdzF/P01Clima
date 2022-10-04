@@ -1,3 +1,4 @@
+from sys import orig_argv
 import tkinter as tk
 from Solicitud.SolicitaAPI import SolicitaApi
 
@@ -60,25 +61,29 @@ class interfazGrafica:
 
         def opcion_seleccionada():                        
             
-            self.seleccion = lista_viajes.get(lista_viajes.curselection())            
+            self.seleccion = lista_viajes.get(lista_viajes.curselection())   
+
+            origen = self.seleccion[0:3]
+            destino = self.seleccion[9:12]         
 
             eti_seleccion = tk.Label(raiz, text= self.seleccion, bg= 'red', font= ('Modern', 15))
             eti_seleccion.place(relx= 0.82, rely= 0.15,height= 250, width=250)          
-
+            
             '''
-            clima_cd_origen = tk.Label(raiz, text= self.seleccion[0:3], font= ('Modern',20), bg= '#F58E1F')            
+            clima_cd_origen = tk.Label(raiz, text= 'Origen', font= ('Modern',20), bg= '#F58E1F')            
             clima_cd_origen.place(relx= 0.11, rely= 0.42)
 
-            clima_cd_destino = tk.Label(raiz, text= self.seleccion[4:], font= ('Modern',20), bg= '#F58E1F')
+            clima_cd_destino = tk.Label(raiz, text= 'Destino', font= ('Modern',20), bg= '#F58E1F')
             clima_cd_destino.place(relx= 0.56, rely= 0.42)
             '''            
+            
 
             ind = 0
             
-            while self.seleccion.count(self.viajes[ind][0]) == 0 or self.seleccion.count(self.viajes[ind][1]) == 0:            
+            while origen.count(self.viajes[ind][0]) == 0 or destino.count(self.viajes[ind][1]) == 0:            
                 ind = ind + 1
             
-            print(ind)
+            print(origen, ' --- > ' , destino)
 
             solicitud = SolicitaApi(self.coordenadas, ind)
             
