@@ -101,7 +101,6 @@ class SolicitaApi:
             climaCdOrigen = "Nombre de la ciudad : " + str(clima_org ['name']) + "\n\n\n- Clima : " + clima_org ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_org ['wind']['speed']) + "\n\n"
                         
             self.clima_ciudad_origen = climaCdOrigen
-
             Cache.archivo.write(iata1+"\n")
             Cache.archivo.write(climaCdOrigen)            
 
@@ -130,6 +129,7 @@ class SolicitaApi:
             climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n\n"
 
             self.clima_ciudad_destino = climaCdDestino 
+            print("1--------CD: " , self.clima_ciudad_destino)
 
             Cache.archivo.write(iata2+"\n")
             Cache.archivo.write(str(climaCdDestino))                                           

@@ -94,6 +94,8 @@ class interfazGrafica:
 
         self.solicitud = SolicitaApi(self.coordenadas)
 
+        self.solicitud = SolicitaApi(self.coordenadas)
+
         boton = tk.Button(raiz, text= 'Buscar', font= 'Modern', command= opcion_seleccionada)
         boton.place(relx= .75, rely= 0.15,height= 100, width=100)                                        
 
