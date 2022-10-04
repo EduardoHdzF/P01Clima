@@ -1,5 +1,6 @@
 clave.txt
 *.pyc
+*.cpython-310.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
