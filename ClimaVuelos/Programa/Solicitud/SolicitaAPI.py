@@ -1,5 +1,5 @@
 import json
-from logging import shutdown
+#from logging import shutdown
 from urllib.request import urlopen
 import Solicitud.Cache.CreaCache as cache
 import Entrada.datosEntrada as entrada
