@@ -48,7 +48,6 @@ class interfazGrafica:
 
         barra = tk.Scrollbar(marco)
         barra.pack(side= tk.RIGHT, fill= tk.Y)
-
         lista_viajes = tk.Listbox(marco, yscrollcommand= barra.set, width= 125, font= 'Modern')
         
         for viajes_disponibles in range(len(self.viajes)):
@@ -78,8 +77,7 @@ class interfazGrafica:
             clima_cd_origen.place(relx= 0.11, rely= 0.42)
 
             clima_cd_destino = tk.Label(raiz, text= 'Destino', font= ('Modern',20), bg= '#F58E1F')
-            clima_cd_destino.place(relx= 0.56, rely= 0.42)
-                                    
+            clima_cd_destino.place(relx= 0.56, rely= 0.42)                                    
             
             ind = 0
             
@@ -93,6 +91,8 @@ class interfazGrafica:
 
             clima_ciudad_destino = tk.Label(raiz, text= self.solicitud.clima_ciudad_destino, bg= '#39D2E7', font= ('Modern', 20), justify= 'left')
             clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)            
+
+        self.solicitud = SolicitaApi(self.coordenadas)
 
         self.solicitud = SolicitaApi(self.coordenadas)
 
