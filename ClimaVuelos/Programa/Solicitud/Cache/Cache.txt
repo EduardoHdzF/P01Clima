@@ -82,3 +82,39 @@ ORD
     Nubes : 20
     Nombre : Rosemont
 
+AGU
+- Clima de la ciudad de origen AGU -
+    Condición actual : Clouds
+    Descripción : overcast clouds
+    Temperatura : 15.41°C
+    Temperatura mínima : 15.41°C
+    Temperatura máxima : 15.41°C
+    Humedad (%) : 77
+    Velocidad del viento : 1.9
+    Nubes : 100
+    Nombre : La Providencia de Arriba
+
+DFW
+- Clima de la ciudad de destino DFW -
+    Condición actual : Clear
+    Descripción : clear sky
+    Temperatura : 28.95°C
+    Temperatura mínima : 27.47°C
+    Temperatura máxima : 30.65°C
+    Humedad (%) : 29
+    Velocidad del viento : 2.68
+    Nubes : 0
+    Nombre : Grapevine
+
+PHX
+- Clima de la ciudad de destino PHX -
+    Condición actual : Clouds
+    Descripción : scattered clouds
+    Temperatura : 36.13°C
+    Temperatura mínima : 34.07°C
+    Temperatura máxima : 37.87°C
+    Humedad (%) : 25
+    Velocidad del viento : 2.68
+    Nubes : 40
+    Nombre : Phoenix
+

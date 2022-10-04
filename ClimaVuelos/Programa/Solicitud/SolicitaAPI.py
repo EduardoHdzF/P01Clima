@@ -6,19 +6,22 @@ import Entrada.datosEntrada as entrada
 
 
 class SolicitaApi:
+    """ Representa una solicitud para una API.
+    
+    Atributos:
+        enlace(str): La parte principal del enlace para requerir la API
+    """
 
     enlace =  "https://api.openweathermap.org/data/2.5/weather?lat="    
 
     def __init__(self, lista_coordenadas, indice_proporcionado):
+        """ Inicializa el objeto tipo Solicitud """
         self.lista_coordenadas = lista_coordenadas
         self.indice_proporcionado = indice_proporcionado  
     
-    """
-        Nos hace la llamada en la API de la ciudad dada con las coordenadas proporcionadas
-        como parámetros
-    """
+    
     def solicitarAPI(self,latitud, longitud):
-
+        """ Hace la llamada a la API de la ciudad dada con las coordenadas proporcionadas """
         url_modif_org = self.enlace + str(latitud) + "&lon=" + str(longitud) + "&units=metric" +"&appid="+ self.obtenerId()
         return url_modif_org
 
@@ -28,7 +31,7 @@ class SolicitaApi:
         carpeta Clave
     """
     def obtenerId(self):
-        archivoID = open("ClimaVuelos\Programa\Clave\clave.txt")
+        archivoID = open("ClimaVuelos/Programa/Clave/clave.txt")
         clave = archivoID.readline()
         archivoID.close()
         return clave

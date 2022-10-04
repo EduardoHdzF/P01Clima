@@ -6,7 +6,7 @@
     existen en la lista dada.
 '''
 
-ciudades_archivo_csv = open('ClimaVuelos\Programa\Entrada\dataset1.csv', 'r+')
+ciudades_archivo_csv = open('ClimaVuelos/Programa/Entrada/dataset1.csv', 'r+')
 
 listaCoordenadas = []
 
