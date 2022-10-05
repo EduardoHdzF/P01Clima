@@ -1,6 +1,6 @@
 import InterfazGrafica.interfazGrafica as interfaz
 import Entrada.datosEntrada as entrada
-from Solicitud.Cache.CreaCache import Cache
+from Solicitud.Cache.Cache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
 """ Aquí es donde ejecutamos los métodos para que nuestro programa funcione """

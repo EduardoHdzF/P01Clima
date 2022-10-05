@@ -1,6 +1,6 @@
 import json
 from urllib.request import urlopen
-import Solicitud.Cache.CreaCache as cache
+import Solicitud.Cache.Cache as cache
 import Entrada.datosEntrada as entrada
 
 class SolicitaApi:
