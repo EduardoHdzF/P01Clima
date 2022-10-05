@@ -53,7 +53,7 @@ class datosEntrada:
         nos regresa la lista creada
     """
     def obtenerCiudades(self):
-            
+        print("Hola")
         listaCiudades = {}       
         listaCoordenadas = self.listaVuelos
 

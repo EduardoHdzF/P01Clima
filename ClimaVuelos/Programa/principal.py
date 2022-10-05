@@ -19,7 +19,7 @@ interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionari
 
 interfaz_grafica.desplega_ventana()
 
-diccionarioCiudades = Entrada.listaAeropuertos
+#diccionarioCiudades = Entrada.obtenerCiudades()
 
 ACache.cerrarCache()
 

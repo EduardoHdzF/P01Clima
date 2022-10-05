@@ -15,7 +15,7 @@ class interfazGrafica:
         self.solicitud = SolicitaApi(self.coordenadas)            
         self.solicitud.preguntaApi(self.coordenadas, ind)
 
-    def tempo(self):
+    def tiempo(self):
         self.t = Timer(300, self.borraCache)
         self.t.start()       
 
@@ -63,7 +63,7 @@ class interfazGrafica:
             self.Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")                       
             
             if self.Cache.readline() == '' and raiz.winfo_viewable() == 1:
-                self.tempo()
+                self.tiempo()
 
             self.seleccion = lista_viajes.get(lista_viajes.curselection())   
 
@@ -90,7 +90,7 @@ class interfazGrafica:
             clima_ciudad_origen.place(relx= 0.1, rely= 0.48,height= 500, width=700)
 
             clima_ciudad_destino = tk.Label(raiz, text= self.solicitud.clima_ciudad_destino, bg= '#39D2E7', font= ('Modern', 20), justify= 'left')
-            clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)            
+            clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)
 
         self.solicitud = SolicitaApi(self.coordenadas)        
 
