@@ -3,34 +3,42 @@ from Solicitud.SolicitaAPI import SolicitaApi
 from threading import Timer
 
 class interfazGrafica:
-    
+    """ 
+        Nos representa la interfaz al usuario 
+        Atributos:        
+            seleccion(lista)
+            Cache(archivo de texto)
+    """
     seleccion = ['']
     Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
 
-    def __init__(self, viajes, coordenadas):        
+    def __init__(self, viajes, coordenadas): 
+        """ 
+            Inicializa un objeto tipo InterfazGráfica
+            Args:
+                viajes(list)
+                coordenadas(dict)
+        """       
         self.viajes = viajes
         self.coordenadas = coordenadas
 
     def solicitud_Datos(self, ind):
+        """ Nos hace la solicitud a la Api, de la opción seleccionada"""
         self.solicitud = SolicitaApi(self.coordenadas)            
         self.solicitud.preguntaApi(self.coordenadas, ind)
 
     def tiempo(self):
+        """ Nos empieza a contar el tiempo para borrar el caché, el tiempo es de 5 min"""
         self.t = Timer(300, self.borraCache)
         self.t.start()       
 
     def borraCache(self):         
+        """ Nos borra los datos del caché y cierra el archivo """
         self.Cache.truncate(0)
         self.Cache.close()                
-
-    def desplega_ventana(self):
-        
-        altura = 1000
-        ancho = 10000
-
-        raiz = tk.Tk()
-        raiz.title("Climas de Aeropuertos")        
-
+    
+    def cargarElementosInterfaz(self, raiz,altura,ancho):
+        """ Nos crea los elementos de la interfaz, como botones y etiquetas"""
         ventana = tk.Canvas(raiz, height = altura, width = ancho, bg= '#F58E1F')
         ventana.pack(anchor= tk.CENTER, expand=True)
 
@@ -55,8 +63,21 @@ class interfazGrafica:
         
         lista_viajes.pack(side= tk.LEFT, fill= tk.BOTH)
 
-        barra.config(command= lista_viajes.yview)                      
+        barra.config(command= lista_viajes.yview)     
+        
+        return lista_viajes
 
+    def desplega_ventana(self):
+
+        """ Nos muestra la ventana al usuario y carga los elemmentos necesatios """
+
+        altura = 1000
+        ancho = 10000
+
+        raiz = tk.Tk()
+        raiz.title("Climas de Aeropuertos")        
+
+        lista_viajes = self.cargarElementosInterfaz(raiz,altura,ancho)        
 
         def opcion_seleccionada(): 
 

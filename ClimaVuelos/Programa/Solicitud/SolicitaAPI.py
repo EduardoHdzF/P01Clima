@@ -4,43 +4,57 @@ import Solicitud.Cache.Cache as cache
 import Entrada.datosEntrada as entrada
 
 class SolicitaApi:
+    
+    """ Nos representa una solicitud a la API.
+        Atributos: 
+            enlace(str): La base del link necesario para hacer la petición.
+            clima_ciudad_origen (str): El clima del sitio de origen de cada petición que se haga.
+            clima_ciudad_destino (str): El clima del sitio de destino de cada petición que se haga.
+    """
 
     clima_ciudad_origen = ''
     clima_ciudad_destino = ''   
     enlace =  "https://api.openweathermap.org/data/2.5/weather?lat="    
 
-    def __init__(self, lista_coordenadas):  
+    def __init__(self, lista_coordenadas): 
+        """ Inicializa el objeto tipo SolicitaApi
+            Argumentos: 
+                listadeVuelos(List)
+        """
         self.lista_coordenadas = lista_coordenadas
         self.terminado = False          
     
-    """
-        Nos hace la llamada en la API de la ciudad dada con las coordenadas proporcionadas
-        como parámetros
-    """
-    def solicitarAPI(self,latitud, longitud):
-
+    def solicitarAPI(self,latitud, longitud):            
+        """
+            Nos hace la llamada en la API de la ciudad dada con las coordenadas proporcionadas
+            como parámetros
+            Args:
+                latitud(str)
+                longitud(str)
+        """
         url_modif_org = self.enlace + str(latitud) + "&lon=" + str(longitud) + "&units=metric" +"&appid="+ self.obtenerId()
         return url_modif_org
 
-    """
-        Nos devuelve la clave de la API para que podamos hacer la llamada.
-        Esta clave se encuentra en el archivo, clave.txt que deberá estar dentro de la
-        carpeta Clave
-    """
+    
     def obtenerId(self):
-
+        """
+            Nos devuelve la clave de la API para que podamos hacer la llamada.
+            Esta clave se encuentra en el archivo, clave.txt que deberá estar dentro de la
+            carpeta Clave
+        """
         archivoID = open("ClimaVuelos/Programa/Clave/clave.txt")
 
         clave = archivoID.readline()
         archivoID.close()
         return clave
 
-    """
-        Nos devuelve una lista con los datos de los vuelos, es decir sus 
-        claves correspondientes de origen y destino, así como sus coordenadas        
-    """
+   
     def identificarCoordenadasVuelos(self):                    
-        
+        """
+            Nos devuelve un diccionario con los datos de los vuelos, es decir sus 
+            claves correspondientes de origen y destino, así como sus coordenadas.
+            Regresa: un diccionario con los datos.
+        """
         dicionarioCoordenadasVuelos = {}
 
         for vuelo in range(len(self.lista_coordenadas)):
@@ -59,12 +73,12 @@ class SolicitaApi:
 
         return dicionarioCoordenadasVuelos                        
 
-    """
-        Nos hace el proceso para poder hacer la solicitud a la API, es decir separa  las coordenadas y nos 
-        genera los datos para imprimir        
-    """
+    
     def preguntaApi(self, diccionarioVuelos, indice):
-        
+        """
+            Nos hace el proceso para poder hacer la solicitud a la API, es decir separa  las coordenadas y nos 
+            genera los datos para mostrar al usuario.
+        """
         Cache = cache.Cache()
         Cache.archivo.seek(0)
         lineasCache = Cache.archivo.readlines()
@@ -107,7 +121,16 @@ class SolicitaApi:
         Cache.cerrarCache()          
     
     def guardarJson(self, latitud, longitud, diccionario, iata, num):
-    
+        """ 
+            Nos ayuda a guardar la información obtenida por la llamada en el caché para utilizarla después. 
+            Argumentos:
+                latitud(str)
+                longitud(str)
+                diccionario(dict)
+                iata(str)
+                num(int)
+        """
+
         Cache = cache.Cache()
         Cache.archivo.seek(0)
         

@@ -6,15 +6,20 @@
     existen en la lista dada.
 '''
 class datosEntrada:
+    """ Representa los datos dados como entrada. """
 
     def __init__(self):
+        """ Incializa el objeto de tipo datosEntrada."""
+
         self.ciudades_archivo_csv = open('ClimaVuelos/Programa/Entrada/dataset1.csv', 'r+')
         self.listaVuelos = self.obtenerListaVuelos()
         self.listaAeropuertos = self.listaCiudades()
 
     def obtenerListaVuelos(self):
 
-        """ Nos regresa una lista con los distintos vuelos(sin repeticiones) que existen en todo el archivo de entrada """
+        """ Nos regresa una lista con los distintos vuelos(sin repeticiones) que existen en todo el archivo de entrada.
+            Regresa: una lista.
+        """
 
         listaCoordenadas = []
 
@@ -38,7 +43,10 @@ class datosEntrada:
 
 
     def listaCiudades(self):
-        
+        """ Nos regresa una lista con las claves iata del origen y destino de cada vuelo.
+            Regresa: una lista.
+        """
+                
         lista_ciudades = []
         lista_coordenadas = self.listaVuelos
         for iter in range(len(lista_coordenadas)):
@@ -48,11 +56,12 @@ class datosEntrada:
 
         return lista_ciudades
 
-    """
-        Nos crea una lista con las distintas ciudades que están en los vuelos con sus coordenadas
-        nos regresa la lista creada
-    """
+    
     def obtenerCiudades(self):
+        """
+            Nos crea un diccionario con las distintas ciudades que están en los vuelos con sus coordenadas.            
+            Regresa: un diccionario.
+        """
         print("Hola")
         listaCiudades = {}       
         listaCoordenadas = self.listaVuelos
@@ -82,6 +91,7 @@ class datosEntrada:
         return listaCiudades
 
     def cerrarListaDatos(self):
+        """ Cierra el archivo dado como entrada. """
         self.ciudades_archivo_csv.close()
 
 
