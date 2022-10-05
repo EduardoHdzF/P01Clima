@@ -1,8 +1,8 @@
 import json
-from logging import shutdown
 from urllib.request import urlopen
 import Solicitud.Cache.CreaCache as cache
 import Entrada.datosEntrada as entrada
+from cryptography.fernet import Fernet
 
 class SolicitaApi:
 
@@ -30,11 +30,17 @@ class SolicitaApi:
     """
     def obtenerId(self):
 
-        archivoID = open("ClimaVuelos/Programa/Clave/clave.txt")
+        with open('ClimaVuelos/Programa/Clave/llave.txt','rb') as arch_llave:
+            llave = arch_llave.read()
 
-        clave = archivoID.readline()
-        archivoID.close()
-        return clave
+        fernet = Fernet(llave)
+
+        with open("ClimaVuelos/Programa/Clave/clave.txt", 'rb') as arch_encrip:
+            encrip = arch_encrip.read()
+        
+        desencriptado = fernet.decrypt(encrip)
+
+        return desencriptado.decode('utf-8')
 
     """
         Nos devuelve una lista con los datos de los vuelos, es decir sus 
