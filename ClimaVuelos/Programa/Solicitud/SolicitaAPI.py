@@ -145,4 +145,4 @@ class SolicitaApi:
 
                 self.clima_ciudad_destino += str(lineasCache[indiceDeCiudad+linea])                           
 
-        Cache.cerrarCache()        
+        Cache.cerrarCache() 
