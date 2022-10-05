@@ -1,5 +1,4 @@
 import json
-#from logging import shutdown
 from urllib.request import urlopen
 import Solicitud.Cache.CreaCache as cache
 import Entrada.datosEntrada as entrada
@@ -83,7 +82,7 @@ class SolicitaApi:
         long_des = diccionarioVuelos[indice]["Longitud de destino"]
 
         if lineasCache.count(iata1+"\n") == 0:
-        
+            
             url_org = self.solicitarAPI(lat_org,long_org)
 
             diccionarioCache1[iata1] = url_org        
@@ -91,47 +90,39 @@ class SolicitaApi:
             with urlopen(url_org) as json_dicc_org:
                 json_data_org = json_dicc_org.read()
 
-
-            # Imprime el clima de la ciudad de origen (diccionario).
             clima_org = json.loads(json_data_org)
             
-            # Clima de la ciudad de origen:
             climaCdOrigen = "Nombre de la ciudad : " + str(clima_org ['name']) + "\n\n\n- Clima : " + clima_org ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_org ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_org ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_org ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_org ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_org ['wind']['speed']) + "\n\n"
                         
             self.clima_ciudad_origen = climaCdOrigen
             Cache.archivo.write(iata1+"\n")
             Cache.archivo.write(climaCdOrigen)            
-
+            
         else:
             
-            indiceDeCiudad = lineasCache.index(iata1+"\n")+1
-            #indiceDeCiudad = lineasCache.index(iata1+"\n")
-            
+            indiceDeCiudad = lineasCache.index(iata1+"\n")+1            
             for linea in range(10):
 
                 self.clima_ciudad_origen += str(lineasCache[indiceDeCiudad+linea])
             
         if lineasCache.count(iata2+"\n") == 0:
-            # Llamada Api de ciudad de destino
+            
             url_des = self.solicitarAPI(lat_des,long_des)
             
             diccionarioCache2[iata2] = url_des
 
             with urlopen(url_des) as json_dicc_des:
                 json_data_des = json_dicc_des.read()
-
-            # Imprime el clima de la ciudad de destino (diccionario).
+            
             clima_des = json.loads(json_data_des)
             
-            # Clima de la ciudad de destino:
             climaCdDestino = "Nombre de la ciudad : " + str(clima_des ['name']) + "\n\n\n- Clima : " + clima_des ['weather'][0]['description'] + "\n- Temperatura : " + str(clima_des ['main']['temp']) + "°C"+ "\n    - Temperatura mínima : " + str(clima_des ['main']['temp_min']) + "°C" +"\n    - Temperatura máxima : " + str(clima_des ['main']['temp_max']) + "°C"+"\n- Humedad (%) : " + str(clima_des ['main']['humidity']) + "\n- Velocidad del viento : " + str(clima_des ['wind']['speed']) + "\n\n"
 
             self.clima_ciudad_destino = climaCdDestino 
-            #print("1--------CD: " , self.clima_ciudad_destino)
-
+            
             Cache.archivo.write(iata2+"\n")
             Cache.archivo.write(str(climaCdDestino))                                           
-
+            
         else:
 
             indiceDeCiudad = lineasCache.index(iata2+"\n")+1
@@ -140,4 +131,4 @@ class SolicitaApi:
 
                 self.clima_ciudad_destino += str(lineasCache[indiceDeCiudad+linea])                           
 
-        Cache.cerrarCache()        
+        Cache.cerrarCache()          

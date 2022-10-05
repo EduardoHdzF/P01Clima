@@ -3,15 +3,17 @@ import Entrada.datosEntrada as entrada
 from Solicitud.Cache.CreaCache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
+""" Aquí es donde ejecutamos los métodos para que nuestro programa funcione """
+
 Entrada = entrada.datosEntrada()
 
 ACache = Cache()
 
 coordenadas = Entrada.listaVuelos
 
-Clase = SolicitaApi(coordenadas)
+Solicitud = SolicitaApi(coordenadas)
 
-diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
+diccionarioCoordenadas = Solicitud.identificarCoordenadasVuelos()
 
 interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionarioCoordenadas)
 

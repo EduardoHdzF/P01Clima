@@ -13,10 +13,10 @@ class datosEntrada:
         self.listaAeropuertos = self.listaCiudades()
 
     def obtenerListaVuelos(self):
-        """ Nos regresa una lista con los distintos vuelos que existen en todo el archivo de entrada """
-        listaCoordenadas = []
 
-        # Agregar las ciudades a mi lista (sin repeticiones).
+        """ Nos regresa una lista con los distintos vuelos(sin repeticiones) que existen en todo el archivo de entrada """
+
+        listaCoordenadas = []
 
         for iter in range(len(self.ciudades_archivo_csv.readlines())):
             
@@ -34,13 +34,11 @@ class datosEntrada:
                     self.ciudades_archivo_csv.seek(0)   
 
         listaCoordenadas.sort()
-        #print(listaCoordenadas)
         return listaCoordenadas
 
 
     def listaCiudades(self):
         
-        #Creacion de una lista para el usuario para que pueda ver cual opcion escoger.
         lista_ciudades = []
         lista_coordenadas = self.listaVuelos
         for iter in range(len(lista_coordenadas)):
