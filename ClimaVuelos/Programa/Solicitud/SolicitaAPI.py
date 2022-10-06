@@ -6,9 +6,9 @@ from cryptography.fernet import Fernet
 
 class SolicitaApi:
     
-    """ Nos representa una solicitud a la API.
+    """ Representa una solicitud a la API.
         Atributos: 
-            enlace(str): La base del link necesario para hacer la petición.
+            enlace(str): La parte principal del enlace para requerir la API
             clima_ciudad_origen (str): El clima del sitio de origen de cada petición que se haga.
             clima_ciudad_destino (str): El clima del sitio de destino de cada petición que se haga.
     """
