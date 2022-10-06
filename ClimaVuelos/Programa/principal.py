@@ -1,22 +1,29 @@
 import InterfazGrafica.interfazGrafica as interfaz
 import Entrada.datosEntrada as entrada
-from Solicitud.Cache.CreaCache import Cache
+from Solicitud.Cache.Cache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
-ACache = Cache()
 
-coordenadas = entrada.listaCoordenadas
 
-Clase = SolicitaApi(coordenadas)
+def corre():
+    ''' Aquí es donde ejecutamos los métodos para que nuestro programa funcione '''
+    Entrada = entrada.datosEntrada()
 
-diccionarioCoordenadas = Clase.identificarCoordenadasVuelos()
+    ACache = Cache()
 
-interfaz_grafica = interfaz.interfazGrafica(entrada.lista_ciudades, diccionarioCoordenadas)
+    coordenadas = Entrada.listaVuelos
 
-interfaz_grafica.desplega_ventana()
+    Solicitud = SolicitaApi(coordenadas)
 
-diccionarioCiudades = entrada.obtenerCiudades()
+    diccionarioCoordenadas = Solicitud.identificarCoordenadasVuelos()
 
-ACache.cerrarCache()
+    interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionarioCoordenadas)
 
-entrada.ciudades_archivo_csv.close()
+    interfaz_grafica.desplega_ventana()
+    
+    ACache.cerrarCache()
+
+    Entrada.cerrarListaDatos()
+
+if __name__=='__main__':
+    corre()
