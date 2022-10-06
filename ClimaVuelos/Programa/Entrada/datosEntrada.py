@@ -54,41 +54,7 @@ class datosEntrada:
             ciudades_org_des = [lista_coordenadas[iter][0:3] , lista_coordenadas[iter][4:7]]
             lista_ciudades.append(ciudades_org_des)
 
-        return lista_ciudades
-
-    
-    def obtenerCiudades(self):
-        """
-            Nos crea un diccionario con las distintas ciudades que están en los vuelos con sus coordenadas.            
-            Regresa: un diccionario.
-        """
-        print("Hola")
-        listaCiudades = {}       
-        listaCoordenadas = self.listaVuelos
-
-        for vuelo in range(len(listaCoordenadas)):
-            
-            iata1 = listaCoordenadas[vuelo][0:3]
-            iata2 = listaCoordenadas[vuelo][4:7]
-
-            coord_lat_origen = listaCoordenadas[int(vuelo)][6:]
-            coord_long_origen = listaCoordenadas[int(vuelo)][14:]
-            coord_lat_destino = listaCoordenadas[int(vuelo)][22:]    
-            coord_long_destino =listaCoordenadas[int(vuelo)][30:]
-
-            listaCiudades[iata1] = {
-
-                "Latitud" : listaCoordenadas[vuelo][listaCoordenadas[int(vuelo)].index(coord_lat_origen) + coord_lat_origen.index(',') + 1 : listaCoordenadas[int(vuelo)].index(coord_long_origen)],
-                "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_origen) + coord_long_origen.index(',') + 1:listaCoordenadas[int(vuelo)].index(coord_lat_destino) + 1],            
-            }
-            listaCiudades[iata2] = {
-
-
-                "Latitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_lat_destino) + coord_lat_destino.index(',') + 1:-11],
-                "Longitud" : listaCoordenadas[int(vuelo)][listaCoordenadas[int(vuelo)].index(coord_long_destino) + coord_long_destino.index(',') + 1:-1]    
-            }
-
-        return listaCiudades
+        return lista_ciudades    
 
     def cerrarListaDatos(self):
         """ Cierra el archivo dado como entrada. """

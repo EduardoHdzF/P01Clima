@@ -1,6 +1,8 @@
 import tkinter as tk
 from Solicitud.SolicitaAPI import SolicitaApi
 from threading import Timer
+    
+
 
 class interfazGrafica:
     """ 
@@ -11,7 +13,7 @@ class interfazGrafica:
     """
     seleccion = ['']
     Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
-
+    
     def __init__(self, viajes, coordenadas): 
         """ 
             Inicializa un objeto tipo InterfazGráfica
@@ -21,7 +23,7 @@ class interfazGrafica:
         """       
         self.viajes = viajes
         self.coordenadas = coordenadas
-
+    
     def solicitud_Datos(self, ind):
         """ Nos hace la solicitud a la Api, de la opción seleccionada"""
         self.solicitud = SolicitaApi(self.coordenadas)            
@@ -36,7 +38,7 @@ class interfazGrafica:
         """ Nos borra los datos del caché y cierra el archivo """
         self.Cache.truncate(0)
         self.Cache.close()                
-    
+        
     def cargarElementosInterfaz(self, raiz,altura,ancho):
         """ Nos crea los elementos de la interfaz, como botones y etiquetas"""
         ventana = tk.Canvas(raiz, height = altura, width = ancho, bg= '#F58E1F')
@@ -60,7 +62,7 @@ class interfazGrafica:
         
         for viajes_disponibles in range(len(self.viajes)):
             lista_viajes.insert(tk.END, self.viajes[viajes_disponibles][0] + " ---> " + self.viajes[viajes_disponibles][1])
-        
+            
         lista_viajes.pack(side= tk.LEFT, fill= tk.BOTH)
 
         barra.config(command= lista_viajes.yview)     
@@ -104,7 +106,7 @@ class interfazGrafica:
             
             while origen.count(self.viajes[ind][0]) == 0 or destino.count(self.viajes[ind][1]) == 0:            
                 ind = ind + 1
-            
+                
             self.solicitud_Datos(ind)
 
             clima_ciudad_origen = tk.Label(raiz, text= self.solicitud.clima_ciudad_origen, bg= '#43C01B', font= ('Modern', 20), justify= 'left')

@@ -3,24 +3,27 @@ import Entrada.datosEntrada as entrada
 from Solicitud.Cache.Cache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
-""" Aquí es donde ejecutamos los métodos para que nuestro programa funcione """
 
-Entrada = entrada.datosEntrada()
 
-ACache = Cache()
+def corre():
+    ''' Aquí es donde ejecutamos los métodos para que nuestro programa funcione '''
+    Entrada = entrada.datosEntrada()
 
-coordenadas = Entrada.listaVuelos
+    ACache = Cache()
 
-Solicitud = SolicitaApi(coordenadas)
+    coordenadas = Entrada.listaVuelos
 
-diccionarioCoordenadas = Solicitud.identificarCoordenadasVuelos()
+    Solicitud = SolicitaApi(coordenadas)
 
-interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionarioCoordenadas)
+    diccionarioCoordenadas = Solicitud.identificarCoordenadasVuelos()
 
-interfaz_grafica.desplega_ventana()
+    interfaz_grafica = interfaz.interfazGrafica(Entrada.listaAeropuertos, diccionarioCoordenadas)
 
-#diccionarioCiudades = Entrada.obtenerCiudades()
+    interfaz_grafica.desplega_ventana()
+    
+    ACache.cerrarCache()
 
-ACache.cerrarCache()
+    Entrada.cerrarListaDatos()
 
-Entrada.cerrarListaDatos()
+if __name__=='__main__':
+    corre()
