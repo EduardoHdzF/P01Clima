@@ -5,19 +5,34 @@ class pruebasEntrada(unittest.TestCase):
     """ Clase que nos correrá las pruebas automatizadas para detectar errores en el código del archivo datosEntrada"""
     
     def test_archivoEntrada(self):
-        assert len(entrada.ciudades_archivo_csv.readlines()) == 0, 'El archivo es vacío'
-    
+        """ Verificar que el archivo de entrada no sea vacío"""
+        Entra = entrada.datosEntrada()
+        archivo = Entra.ciudades_archivo_csv      
+        archivo.seek(0)  
+        elementos = len(archivo.readlines())            
+        Entra.cerrarListaDatos()
+        assert elementos != 0, 'El archivo es vacío'
+        
+        
     def test_listaCoordenadas(self):
-        assert len(entrada.listaCoordenadas) != 0, 'La lista donde tenemos los aeropuertos con las coordenadas es vacío'
+        """Ver que la lista de los vuelos con sus coordenadas no es vacío"""
+        Entra = entrada.datosEntrada()        
+        Entra.cerrarListaDatos()
+        assert len(Entra.listaVuelos) != 0, 'La lista donde tenemos los aeropuertos con las coordenadas es vacío'
 
     def test_diccionarioAeropuertos(self):
-        diccionario = entrada.obtenerCiudades()
+        """ Verificar que el diccionario con las claves iata y sus coordenadas correspondiente no sea vacío """
+        Entra = entrada.datosEntrada()        
+        diccionario = Entra.obtenerCiudades()
+        Entra.cerrarListaDatos()
         self.assertNotEqual(diccionario.keys(), 0)
 
     def test_coordenadasDiccionario(self):
         """ Nos verifica que las coordenadas que se guardaron en cada aeropuerto del diccionario sean puros números"""
-        diccionario = entrada.obtenerCiudades()        
-        listaAerop = entrada.listaCoordenadas
+        Entra = entrada.datosEntrada()
+        diccionario = Entra.obtenerCiudades()        
+        listaAerop = Entra.listaVuelos
+        Entra.cerrarListaDatos()
         self.assertNotEqual(diccionario.keys(), 0)
         
         for vuelo in range(len(listaAerop)):
@@ -32,5 +47,6 @@ class pruebasEntrada(unittest.TestCase):
                 print("Las coordenadas estan mal dadas, ya que se mezclan con comas(,)")
                 
 
-if __name__ == '__main__':
+if __name__ == '__main__':    
     unittest.main()
+    
