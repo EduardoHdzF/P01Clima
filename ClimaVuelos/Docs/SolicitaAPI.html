@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module SolicitaAPI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>SolicitaAPI</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/estructura/Documentos/Proyectos/P01Clima/ClimaVuelos/Programa/Solicitud/SolicitaAPI.py">/home/estructura/Documentos/Proyectos/P01Clima/ClimaVuelos/Programa/Solicitud/SolicitaAPI.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="Solicitud.Cache.Cache.html">Solicitud.Cache.Cache</a><br>
+</td><td width="25%" valign=top><a href="Entrada.datosEntrada.html">Entrada.datosEntrada</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="SolicitaAPI.html#SolicitaApi">SolicitaApi</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SolicitaApi">class <strong>SolicitaApi</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SolicitaApi">SolicitaApi</a>(lista_coordenadas)<br>
+&nbsp;<br>
+Nos&nbsp;representa&nbsp;una&nbsp;solicitud&nbsp;a&nbsp;la&nbsp;API.<br>
+Atributos:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#SolicitaApi-enlace">enlace</a>(str):&nbsp;La&nbsp;base&nbsp;del&nbsp;link&nbsp;necesario&nbsp;para&nbsp;hacer&nbsp;la&nbsp;petición.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;clima_ciudad_origen&nbsp;(str):&nbsp;El&nbsp;clima&nbsp;del&nbsp;sitio&nbsp;de&nbsp;origen&nbsp;de&nbsp;cada&nbsp;petición&nbsp;que&nbsp;se&nbsp;haga.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;clima_ciudad_destino&nbsp;(str):&nbsp;El&nbsp;clima&nbsp;del&nbsp;sitio&nbsp;de&nbsp;destino&nbsp;de&nbsp;cada&nbsp;petición&nbsp;que&nbsp;se&nbsp;haga.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="SolicitaApi-__init__"><strong>__init__</strong></a>(self, lista_coordenadas)</dt><dd><tt>Inicializa&nbsp;el&nbsp;objeto&nbsp;tipo&nbsp;<a href="#SolicitaApi">SolicitaApi</a><br>
+Argumentos:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;listadeVuelos(List)</tt></dd></dl>
+
+<dl><dt><a name="SolicitaApi-guardarJson"><strong>guardarJson</strong></a>(self, latitud, longitud, diccionario, iata, num)</dt><dd><tt>Nos&nbsp;ayuda&nbsp;a&nbsp;guardar&nbsp;la&nbsp;información&nbsp;obtenida&nbsp;por&nbsp;la&nbsp;llamada&nbsp;en&nbsp;el&nbsp;caché&nbsp;para&nbsp;utilizarla&nbsp;después.&nbsp;<br>
+Argumentos:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;latitud(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;longitud(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;diccionario(dict)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;iata(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;num(int)</tt></dd></dl>
+
+<dl><dt><a name="SolicitaApi-identificarCoordenadasVuelos"><strong>identificarCoordenadasVuelos</strong></a>(self)</dt><dd><tt>Nos&nbsp;devuelve&nbsp;un&nbsp;diccionario&nbsp;con&nbsp;los&nbsp;datos&nbsp;de&nbsp;los&nbsp;vuelos,&nbsp;es&nbsp;decir&nbsp;sus&nbsp;<br>
+claves&nbsp;correspondientes&nbsp;de&nbsp;origen&nbsp;y&nbsp;destino,&nbsp;así&nbsp;como&nbsp;sus&nbsp;coordenadas.<br>
+Regresa:&nbsp;un&nbsp;diccionario&nbsp;con&nbsp;los&nbsp;datos.</tt></dd></dl>
+
+<dl><dt><a name="SolicitaApi-obtenerId"><strong>obtenerId</strong></a>(self)</dt><dd><tt>Nos&nbsp;devuelve&nbsp;la&nbsp;clave&nbsp;de&nbsp;la&nbsp;API&nbsp;para&nbsp;que&nbsp;podamos&nbsp;hacer&nbsp;la&nbsp;llamada.<br>
+Esta&nbsp;clave&nbsp;se&nbsp;encuentra&nbsp;en&nbsp;el&nbsp;archivo,&nbsp;clave.txt&nbsp;que&nbsp;deberá&nbsp;estar&nbsp;dentro&nbsp;de&nbsp;la<br>
+carpeta&nbsp;Clave</tt></dd></dl>
+
+<dl><dt><a name="SolicitaApi-preguntaApi"><strong>preguntaApi</strong></a>(self, diccionarioVuelos, indice)</dt><dd><tt>Nos&nbsp;hace&nbsp;el&nbsp;proceso&nbsp;para&nbsp;poder&nbsp;hacer&nbsp;la&nbsp;solicitud&nbsp;a&nbsp;la&nbsp;API,&nbsp;es&nbsp;decir&nbsp;separa&nbsp;&nbsp;las&nbsp;coordenadas&nbsp;y&nbsp;nos&nbsp;<br>
+genera&nbsp;los&nbsp;datos&nbsp;para&nbsp;mostrar&nbsp;al&nbsp;usuario.</tt></dd></dl>
+
+<dl><dt><a name="SolicitaApi-solicitarAPI"><strong>solicitarAPI</strong></a>(self, latitud, longitud)</dt><dd><tt>Nos&nbsp;hace&nbsp;la&nbsp;llamada&nbsp;en&nbsp;la&nbsp;API&nbsp;de&nbsp;la&nbsp;ciudad&nbsp;dada&nbsp;con&nbsp;las&nbsp;coordenadas&nbsp;proporcionadas<br>
+como&nbsp;parámetros<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;latitud(str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;longitud(str)</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>clima_ciudad_destino</strong> = ''</dl>
+
+<dl><dt><strong>clima_ciudad_origen</strong> = ''</dl>
+
+<dl><dt><strong>enlace</strong> = 'https://api.openweathermap.org/data/2.5/weather?lat='</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

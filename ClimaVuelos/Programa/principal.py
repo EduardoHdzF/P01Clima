@@ -3,7 +3,7 @@ import Entrada.datosEntrada as entrada
 from Solicitud.Cache.Cache import Cache
 from Solicitud.SolicitaAPI import SolicitaApi 
 
-
+""" Documento donde se hará la llamada a los demás métodos y correr el programa """
 
 def corre():
     ''' Aquí es donde ejecutamos los métodos para que nuestro programa funcione '''
