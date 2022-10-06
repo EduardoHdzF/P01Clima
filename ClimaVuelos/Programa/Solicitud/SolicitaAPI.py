@@ -2,6 +2,7 @@ import json
 from urllib.request import urlopen
 import Solicitud.Cache.Cache as cache
 import Entrada.datosEntrada as entrada
+from cryptography.fernet import Fernet
 
 class SolicitaApi:
     
@@ -39,14 +40,19 @@ class SolicitaApi:
     def obtenerId(self):
         """
             Nos devuelve la clave de la API para que podamos hacer la llamada.
-            Esta clave se encuentra en el archivo, clave.txt que deberá estar dentro de la
-            carpeta Clave
-        """
-        archivoID = open("ClimaVuelos/Programa/Clave/clave.txt")
+            Esta clave se encuentra en el archivo encriptada, de tal manera que podamos desencriptar y leer.
+        """ 
+        with open('ClimaVuelos/Programa/Clave/llave.txt','rb') as arch_llave:
+            llave = arch_llave.read()
 
-        clave = archivoID.readline()
-        archivoID.close()
-        return clave
+        fernet = Fernet(llave)
+
+        with open("ClimaVuelos/Programa/Clave/clave.txt", 'rb') as arch_encrip:
+            encrip = arch_encrip.read()
+        
+        desencriptado = fernet.decrypt(encrip)
+
+        return desencriptado.decode('utf-8')
 
    
     def identificarCoordenadasVuelos(self):                    
@@ -95,6 +101,7 @@ class SolicitaApi:
         lat_des = diccionarioVuelos[indice]["Latitud de destino"]
         long_des = diccionarioVuelos[indice]["Longitud de destino"]
 
+        
         if lineasCache.count(iata1+"\n") == 0:
 
            self.guardarJson(lat_org, long_org, diccionarioCache1, iata1,1)

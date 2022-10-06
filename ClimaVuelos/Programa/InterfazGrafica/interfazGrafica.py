@@ -115,8 +115,6 @@ class interfazGrafica:
             clima_ciudad_destino = tk.Label(raiz, text= self.solicitud.clima_ciudad_destino, bg= '#39D2E7', font= ('Modern', 20), justify= 'left')
             clima_ciudad_destino.place(relx= 0.55, rely= 0.48,height= 500, width=700)
 
-        self.solicitud = SolicitaApi(self.coordenadas)        
-
         boton = tk.Button(raiz, text= 'Buscar', font= 'Modern', command= opcion_seleccionada)
         boton.place(relx= .75, rely= 0.15,height= 100, width=100)                                        
 
@@ -124,4 +122,3 @@ class interfazGrafica:
         
         self.Cache.truncate(0)
         self.t.cancel()
-        
