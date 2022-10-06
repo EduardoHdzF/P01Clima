@@ -12,7 +12,7 @@ class interfazGrafica:
             Cache(archivo de texto)
     """
     seleccion = ['']
-    Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","r+")
+    Cache = open("ClimaVuelos/Programa/Solicitud/Cache/Cache.txt","a+")
     
     def __init__(self, viajes, coordenadas): 
         """ 
